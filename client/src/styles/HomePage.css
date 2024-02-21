@@ -1,0 +1,39 @@
+/* .homepage-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .homepage-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .doctor-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }   */
+
+  /* HomePage.css */
+
+.homepage-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .homepage-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .doctor-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  

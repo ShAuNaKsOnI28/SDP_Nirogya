@@ -1,21 +1,10 @@
-// import React from "react";
-
-// const Login = () => {
-//   return (
-//     <div>
-//       <h1>Login Page</h1>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
 import { Form, Input, message } from "antd";
 import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
+import "../styles/LoginStyles.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -47,7 +36,7 @@ const Login = () => {
         onFinish={onfinishHandler}
         className="register-form"
       >
-        <h1>Welcome to Nirogya</h1>
+        <h1 className="text-center">Welcome to Nirogya</h1>
         <h3 className="text-center">Login From</h3>
 
         <Form.Item label="Email" name="email">

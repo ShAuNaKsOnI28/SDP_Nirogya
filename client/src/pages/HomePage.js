@@ -3,9 +3,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DoctorList from "../components/DoctorList";
 import Layout from "./../components/Layout";
+
 const HomePage = () => {
   const [doctors, setDoctors] = useState([]);
-  // login user data
+
   const getUserData = async () => {
     try {
       const res = await axios.get("/api/v1/user/getAllDoctors", {
@@ -24,13 +25,19 @@ const HomePage = () => {
   useEffect(() => {
     getUserData();
   }, []);
+
   return (
     <Layout>
-      <h1 className="text-center"> Home Page</h1>
-      <hr />
-      <Row>
-        {doctors && doctors.map((doctor) => <DoctorList doctor={doctor} />)}
-      </Row>
+      <div className="homepage-container">
+        <h1 className="homepage-title">Welcome to Nirogya</h1>
+        <hr />
+        <Row className="doctor-list-container">
+          {doctors &&
+            doctors.map((doctor) => (
+              <DoctorList key={doctor._id} doctor={doctor} />
+            ))}
+        </Row>
+      </div>
     </Layout>
   );
 };
