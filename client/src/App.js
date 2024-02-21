@@ -6,9 +6,11 @@ import Spinner from "./components/Spinner";
 import ApplyDoctor from "./pages/ApplyDoctor";
 import Appointments from "./pages/Appointments";
 import BookingPage from "./pages/BookingPage";
+import Hero from "./pages/Hero";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import NotificationPage from "./pages/NotificationPage";
+import ProfilePage from "./pages/ProfilePage";
 import Register from "./pages/Register";
 import Doctors from "./pages/admin/Doctors";
 import Users from "./pages/admin/Users";
@@ -27,6 +29,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ApplyDoctor />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
                 </ProtectedRoute>
               }
             />
@@ -75,6 +85,14 @@ function App() {
               element={
                 <PublicRoute>
                   <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PublicRoute>
+                  <Hero />
                 </PublicRoute>
               }
             />

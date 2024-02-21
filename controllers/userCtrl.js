@@ -262,6 +262,31 @@ const userAppointmentsController = async (req, res) => {
   }
 };
 
+const getUsersDataController = async (req, res) => {
+  try {
+    const user = await userModel.findById({ _id: req.body.userId });
+    user.password = undefined;
+    if (!user) {
+      return res.status(200).send({
+        message: "User not found",
+        success: false,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        data: user,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error in fetching user data",
+      success: false,
+      error,
+    });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
@@ -273,4 +298,5 @@ module.exports = {
   bookAppointmentController,
   bookingAvailabilityController,
   userAppointmentsController,
+  getUsersDataController,
 };
