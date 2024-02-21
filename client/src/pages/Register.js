@@ -1,6 +1,6 @@
-// import React, { useState } from "react";
-import { Form, Input, message } from "antd";
+import { Form, Input, Radio, message } from "antd";
 import axios from "axios";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
@@ -10,6 +10,7 @@ const Register = () => {
   const dispatch = useDispatch();
   // const [position, setPosition] = useState("");
   //form handler
+  const [issdoctor, setIssDoctor] = useState(false);
   const onfinishHandler = async (values) => {
     try {
       dispatch(showLoading());
@@ -45,24 +46,16 @@ const Register = () => {
           <Form.Item label="Password" name="password">
             <Input type="password" required />
           </Form.Item>
-          {/* <Form.Item label="" name="isDoctor">
-            doctor{" "}
-            <Input
-              type="radio"
-              checked={position === "doctor"}
-              onChange={(e) => setPosition("doctor")}
-              onClick={(isDoctor = true)}
-              required
-            />
-            admin{" "}
-            <Input
-              type="radio"
-              checked={position === "admin"}
-              onChange={(e) => setPosition("admin")}
-              onClick={(isAdmin = true)}
-              required
-            />
-          </Form.Item> */}
+          <Form.Item
+            label="UserType"
+            name="isDoctor"
+            rules={[{ required: true, message: "User type is required" }]}
+          >
+            <Radio.Group onChange={(e) => setIssDoctor(e.target.value)}>
+              <Radio value={true}>Doctor</Radio>
+              <Radio value={false}>Patient</Radio>
+            </Radio.Group>
+          </Form.Item>
           <Link to="/login" className="m-2">
             Already user login here
           </Link>

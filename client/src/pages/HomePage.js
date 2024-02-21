@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DoctorList from "../components/DoctorList";
 import Layout from "./../components/Layout";
-import { ColorFactory } from "antd/es/color-picker/color";
 const HomePage = () => {
   const [doctors, setDoctors] = useState([]);
   // login user data
@@ -28,7 +27,7 @@ const HomePage = () => {
   return (
     <Layout>
       <h1 className="text-center"> Home Page</h1>
-      <hr/>
+      <hr />
       <Row>
         {doctors && doctors.map((doctor) => <DoctorList doctor={doctor} />)}
       </Row>

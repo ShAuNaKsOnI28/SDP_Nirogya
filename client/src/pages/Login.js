@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
