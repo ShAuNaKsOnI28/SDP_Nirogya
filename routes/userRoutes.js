@@ -58,5 +58,4 @@ router.get("/user-appointments", authMiddleware, userAppointmentsController);
 
 router.get("/getUsersData", authMiddleware, getUsersDataController);
 
-
 module.exports = router;

@@ -38,7 +38,6 @@
 
 // export default DoctorList;
 
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/DoctorListStyles.css"; // Add your DoctorListStyles.css or adjust styles as needed
