@@ -240,18 +240,21 @@
 //   );
 // };
 
-import { Link, useNavigate } from "react-router-dom";
 import { Button } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
 
 const Home = () => {
   return (
     <>
+      {/* <Layout> */}
       <Landing />
       <About />
       <Services />
       <Available />
       <GoodLife />
       <Footer />
+      {/* </Layout> */}
     </>
   );
 };
@@ -266,7 +269,8 @@ const Landing = () => {
       <div id="home" className="flex justify-center items-center">
         <div className="flex-1 basis-1/2 p-16">
           <h1 className="text-xl font-medium mb-4 text-sky-400">
-            <i class="fa-regular text-3xl -mr-3 fa-hand-point-right"></i>{" "}
+            <i class="fa-regular text-3xl -mr-3 fa-hand-point-right"></i>
+            {"  "}
             <span className="border-2 rounded-sm p-2 px-4 border-sky-400">
               Welcome to Nirogya
             </span>
@@ -301,11 +305,10 @@ const Landing = () => {
         <div className="flex-1 basis-1/2">
           <div className="absolute top-0 right-0 p-12">
             <Button
-              // to={"/login"}
               onClick={() => {
                 Navigate("/login");
               }}
-              className=" px-4 py-2 ht-60 bg-blue-300 font-semibold hover:text-slate-900 hover:scale-110 transistion-all duration-300 hidden sm:block"
+              className="  text-white bg-sky-500 text-center font-medium hover:text-slate-900 hover:scale-110 transistion-all duration-300 hidden sm:block"
             >
               Join Us
             </Button>
@@ -533,7 +536,7 @@ const Footer = () => {
           <i class="fa-brands fa-youtube hover:text-slate-900 hover:scale-125 transition-all duration-300"></i>
         </div>
         <div className="text-sm text-slate-700">
-          &#169; 2022 Nirogya Pvt. Ltd. All rights reserved.
+          &#169; 2024 Nirogya Pvt. Ltd. All rights reserved.
         </div>
       </div>
     </>

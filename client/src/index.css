@@ -1,12 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-* {
+/* * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
   }
-  
+   */
   /* loader */
   .spinner {
     height: 100vh;
@@ -17,7 +17,7 @@
     background-color: rgba(0, 0, 0, 0.383);
   }
 
-  .form-btn {
+  /* .form-btn {
     width: 250px !important;
     margin-top : 30px !important;
-  }
+  } */
