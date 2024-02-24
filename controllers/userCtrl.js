@@ -36,13 +36,13 @@ const loginController = async (req, res) => {
     const user = await userModel.findOne({ email: req.body.email });
     if (!user) {
       return res
-        .status(200)
+        .status(500)
         .send({ message: "user not found", success: false });
     }
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
       return res
-        .status(200)
+        .status(500)
         .send({ message: "Invlid Email or Password", success: false });
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -243,20 +243,49 @@ const bookingAvailabilityController = async (req, res) => {
 };
 
 const userAppointmentsController = async (req, res) => {
+  // try {
+  //   const appointment = await appointmentModel.find({
+  //     userId: req.body.userId,
+  //   });
+  //   console.log(appointment);
+  //   if (appointment.length === 0) {
+  //     res.status(200).send({
+  //       success: true,
+  //       message: "appointment booked successfully",
+  //       data: appointment,
+  //     });
+  //   }
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).send({
+  //     success: false,
+  //     message: "appointment not available",
+  //     error,
+  //   });
+  // }
   try {
     const appointments = await appointmentModel.find({
       userId: req.body.userId,
     });
-    res.status(200).send({
-      success: true,
-      message: "appointment booked successfully",
-      data: appointments,
-    });
+
+    if (appointments.length === 0) {
+      res.status(200).send({
+        success: true,
+        message: "No appointments found",
+        data: appointments,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        message: " appointments found",
+        data: appointments,
+      });
+    }
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching appointments:", error);
     res.status(500).send({
       success: false,
-      message: "appointment not available",
+      message: "Error fetching appointments",
       error,
     });
   }

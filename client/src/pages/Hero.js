@@ -242,7 +242,6 @@
 
 import { Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
 
 const Home = () => {
   return (
@@ -310,7 +309,7 @@ const Landing = () => {
               }}
               className="  text-white bg-sky-500 text-center font-medium hover:text-slate-900 hover:scale-110 transistion-all duration-300 hidden sm:block"
             >
-              Join Us
+              Sign In
             </Button>
           </div>
           <img src="./images/landing.png" />
@@ -522,7 +521,7 @@ const Footer = () => {
             Contact
           </a>
           <Link
-            to={"/login"}
+            to={"/register"}
             className="hover:text-slate-900 hover:scale-110 transistion-all duration-300 hidden sm:block"
           >
             Join Us

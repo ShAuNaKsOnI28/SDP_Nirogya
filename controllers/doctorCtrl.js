@@ -1,4 +1,6 @@
 const doctorModel = require("../models/doctorModels");
+const appointmentModel = require("../models/appointmentModels");
+const userModel = require("../models/userModels");
 const getDoctorInfoController = async (req, res) => {
   try {
     const doctor = await doctorModel.findOne({ userId: req.body.userId });
@@ -55,8 +57,60 @@ const getDoctorByIdController = async (req, res) => {
   }
 };
 
+const doctorAppointmentController = async (req, res) => {
+  try {
+    const doctor = await doctorModel.findOne({ userId: req.body.userId });
+    const appointment = await appointmentModel.find({ doctorId: doctor._id });
+    res.status(200).send({
+      success: true,
+      message: "Doctor appointment fetch success",
+      data: appointment,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting doctor appointment",
+      error,
+    });
+  }
+};
+
+const updateStatusController = async (req, res) => {
+  try {
+    const { appointmentsId, status } = req.body;
+    const appointment = await appointmentModel.findByIdAndUpdate(
+      appointmentsId,
+      { status }
+    );
+    const user = await userModel.findOne({
+      _id: appointment.userId,
+    });
+    const notification = user.notification;
+    notification.push({
+      type: "status-updated",
+      message: `your appointment has been ${status}`,
+      onClickPath: "/doctor-appointment",
+    });
+    await user.save();
+    res.status(200).send({
+      message: "Appointment updated",
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while updating appointment",
+      error,
+    });
+  }
+};
+
 module.exports = {
   getDoctorInfoController,
   updateProfileController,
   getDoctorByIdController,
+  doctorAppointmentController,
+  updateStatusController,
 };

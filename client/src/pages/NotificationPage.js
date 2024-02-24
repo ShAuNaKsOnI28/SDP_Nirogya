@@ -35,6 +35,7 @@ const NotificationPage = () => {
       console.log(error);
       message.error("Something went wrong");
     }
+    window.location.reload();
   };
   const handleDeleteAllRead = async () => {
     try {
@@ -61,15 +62,16 @@ const NotificationPage = () => {
       console.log(error);
       message.error("something went wrong in notification");
     }
+    window.location.reload();
   };
   return (
     <Layout>
       <h4 className="p-3 text-center">Notification Page</h4>
-      <hr/>
+      <hr />
       <Tabs>
         <Tabs.TabPane tab="UnRead" key={0}>
           <div className="d-flex justify-content-end">
-            <h4 className="p-2" onClick={handleMarkAllRead}>
+            <h4 className="p-2 cursor-pointer" onClick={handleMarkAllRead}>
               Mark All as Read
             </h4>
           </div>
@@ -87,8 +89,7 @@ const NotificationPage = () => {
         <Tabs.TabPane tab="Read" key={1}>
           <div className="d-flex justify-content-end">
             <h4
-              className="p-2 text-primary"
-              style={{ cursor: "pointer" }}
+              className="p-2 text-primary cursor-pointer"
               onClick={handleDeleteAllRead}
             >
               Delete All as Read
