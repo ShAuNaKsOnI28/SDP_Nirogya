@@ -65,8 +65,41 @@ const changeAccountStatusController = async (req, res) => {
   }
 };
 
+const changeAccountStatusUserController = async (req, res) => {
+  try {
+    const { _id, status } = req.body;
+    const user1 = await userModel.findByIdAndUpdate(
+      _id,
+      { status },
+      { new: true }
+    );
+    const user = await userModel.findOne({ _id: req.body._id });
+    user.notification.push({
+      type: "user-account-status-updated",
+      message: `Your user Account is ${req.body.status} `,
+      onClickPath: "/notification",
+    });
+
+    await user.save();
+
+    res.status(201).send({
+      success: true,
+      message: "Account Status Updated",
+      data: user1,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in Account Status",
+      error,
+    });
+  }
+};
+
 module.exports = {
   getAllDoctorsController,
   getAllUsersController,
   changeAccountStatusController,
+  changeAccountStatusUserController,
 };

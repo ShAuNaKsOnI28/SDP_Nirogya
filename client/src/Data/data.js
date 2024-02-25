@@ -1,3 +1,10 @@
+import { useSelector } from "react-redux";
+
+const Selector = () => {
+  return useSelector((state) => state.user);
+};
+const { user } = { Selector };
+
 export const userMenu = [
   {
     name: "Home",
@@ -18,6 +25,11 @@ export const userMenu = [
     name: "Profile",
     path: "/profile",
     icon: "fa-solid fa-user",
+  },
+  {
+    name: "Notification",
+    path: "/notification",
+    icon: "fa-solid fa-bell",
   },
 ];
 
@@ -43,5 +55,33 @@ export const adminMenu = [
     name: "Profile",
     path: "/profile",
     icon: "fa-solid fa-user",
+  },
+  {
+    name: "Notification",
+    path: "/notification",
+    icon: "fa-solid fa-bell",
+  },
+];
+
+export const doctorMenu = [
+  {
+    name: "Home",
+    path: "/",
+    icon: "fa-solid fa-house",
+  },
+  {
+    name: "Appointments",
+    path: "/doctor-appointment",
+    icon: "fa-solid fa-list",
+  },
+  {
+    name: "Profile",
+    path: `/doctor/profile/${user?._id}`,
+    icon: "fa-solid fa-user",
+  },
+  {
+    name: "Notification",
+    path: "/notification",
+    icon: "fa-solid fa-bell",
   },
 ];

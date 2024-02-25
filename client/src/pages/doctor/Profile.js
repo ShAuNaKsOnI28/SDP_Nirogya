@@ -1,6 +1,5 @@
 import { Col, Form, Input, Row, TimePicker, message } from "antd";
 import axios from "axios";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,8 +23,11 @@ const Profile = () => {
           ...values,
           userId: user._id,
           timings: [
-            moment(values.timings[0], "HH:mm"),
-            moment(values.timings[1], "HH:mm"),
+            values.timings[0].format("HH:mm"),
+            values.timings[1].format("HH:mm"),
+
+            // moment(values.timings[0]).format("HH:mm"),
+            // moment(values.timings[1]).format("HH:mm"),
           ],
         },
         {
@@ -74,19 +76,19 @@ const Profile = () => {
   return (
     <Layout>
       <h1>Manage Profile</h1>
-      <hr/>
+      <hr />
       {doctor && (
         <Form
           layout="vertical"
           onFinish={handleFinish}
           className="m-3"
-          initialValues={{
-            ...doctor,
-            timings: [
-              moment(doctor.timings[0], "HH:mm"),
-              moment(doctor.timings[1], "HH:mm"),
-            ],
-          }}
+          // initialValues={{
+          // ...doctor,
+          // timings: [
+          //   moment(doctor.timings[0]).format("HH:mm"),
+          //   moment(doctor.timings[1]).format("HH:mm"),
+          // ],
+          // }}
         >
           <h4 className="">Personal Details : </h4>
           <Row gutter={20}>

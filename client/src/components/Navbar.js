@@ -2,8 +2,10 @@ import { message } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/LayoutStyles.css";
+// import "../styles/LayoutStyles.css";
+import "alpinejs";
 import "../styles/Navbar.css";
+import Dropdown from "./Dropdown";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
@@ -13,13 +15,9 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.clear();
     message.success("Logout Successfully");
-    navigate("/home");
+    navigate("/login");
   };
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
   // <header class="text-gray-600 body-font py-2 sticky top-0 bg-white">
   //   <div class="container mx-auto flex px-5 flex-col md:flex-row justify-between items-center">
   //     <div>
@@ -138,8 +136,8 @@ const Navbar = () => {
   // </header>
 
   return (
-    <nav className="  bg-transparent border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+    <nav className="  bg-transparent z-50 border-gray-200 dark:bg-gray-900">
+      <div className="max-w-screen-xl z-50 flex flex-wrap items-center justify-between mx-auto p-2">
         <a
           onClick={handleLogout}
           className=" pt-4 flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 cursor-pointer"
@@ -158,8 +156,8 @@ const Navbar = () => {
           </svg>
           <span className="ml-2 text-xl">Nirogya</span>
         </a>
-        <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button
+        <div className=" flex items-center z-50 md:order-2 space-x-3 md:space-x-0 ltr:space-x-reverse">
+          {/* <button
             className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             id="user-menu-button"
             aria-expanded="false"
@@ -193,7 +191,7 @@ const Navbar = () => {
                   >
                     Dashboard
                   </a>
-  </li> */}
+  </li> 
               <li>
                 <a
                   onClick={() => {
@@ -213,8 +211,18 @@ const Navbar = () => {
                 </a>
               </li>
             </ul>
+           </div> 
+                */}
+                
+          <Dropdown />
+          <div className=" px-2 py-2">
+            <span className="block text-sm bg-black text-white dark:text-gray-900 dark:bg-white">
+              {user?.name}
+            </span>
+            <span className="block text-sm bg-black text-white truncate dark:text-gray-900 dark:bg-white">
+              {user?.email}
+            </span>
           </div>
-
           <button
             data-collapse-toggle="navbar-user"
             type="button"

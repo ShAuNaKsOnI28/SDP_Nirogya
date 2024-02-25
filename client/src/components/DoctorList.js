@@ -61,7 +61,7 @@ const DoctorList = ({ doctor }) => {
           </p>
           <p>
             <b>Experience: </b>
-            {doctor.Experience}
+            {doctor.Experince}
           </p>
           <p>
             <b>Fees per Consultation: </b>

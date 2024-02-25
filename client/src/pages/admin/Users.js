@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { Table, message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout";
@@ -21,6 +21,26 @@ const Users = () => {
     }
   };
 
+  const handleAccountStatus = async (record, status) => {
+    try {
+      const res = await axios.post(
+        "/api/v1/admin/changeAccountStatusUser",
+        { _id: record._id, status: status },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        message.success(res.data.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      message.error("Something Went Wrong");
+    }
+  };
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -40,13 +60,50 @@ const Users = () => {
       render: (text, record) => <span>{record.isDoctor ? "Yes" : "No"}</span>,
     },
     {
+      title: "Status",
+      dataIndex: "status",
+    },
+    {
       title: "Actions",
       dataIndex: "actions",
-      render: (ext, record) => (
+      render: (text, record) => (
         <div className="d-flex">
-          <button className="btn btn-danger">Block </button>
+          {record.status === "unblock" ? (
+            <button
+              className="btn btn-danger"
+              onClick={() => handleAccountStatus(record, "block")}
+            >
+              Block
+            </button>
+          ) : (
+            <button
+              className="btn btn-success"
+              // onClick={()=>handleAccountStatus(record, "block")}
+            >
+              Unblock
+            </button>
+          )}
         </div>
       ),
+      // render: (text, record) => (
+      // <div className="d-flex">
+      //   {record.status === "pending" ? (
+      //     <button
+      //       className="btn btn-success"
+      //       onClick={() => handleAccountStatus(record, "approved")}
+      //     >
+      //       Approve
+      //     </button>
+      //   ) : (
+      //     <button
+      //       className="btn btn-danger"
+      //       // onClick={() => handleAccountStatus(record, "reject")}
+      //     >
+      //       Reject
+      //     </button>
+      //   )}
+      // </div>
+      // ),
     },
   ];
 

@@ -243,26 +243,6 @@ const bookingAvailabilityController = async (req, res) => {
 };
 
 const userAppointmentsController = async (req, res) => {
-  // try {
-  //   const appointment = await appointmentModel.find({
-  //     userId: req.body.userId,
-  //   });
-  //   console.log(appointment);
-  //   if (appointment.length === 0) {
-  //     res.status(200).send({
-  //       success: true,
-  //       message: "appointment booked successfully",
-  //       data: appointment,
-  //     });
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(500).send({
-  //     success: false,
-  //     message: "appointment not available",
-  //     error,
-  //   });
-  // }
   try {
     const appointments = await appointmentModel.find({
       userId: req.body.userId,

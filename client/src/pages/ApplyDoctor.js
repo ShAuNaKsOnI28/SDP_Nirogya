@@ -20,8 +20,9 @@ const ApplyDoctor = () => {
           ...values,
           userId: user._id,
           timings: [
-            moment(values.timings[0], "HH:mm"),
-            moment(values.timings[1], "HH:mm"),
+            values.timings[0].format("HH:mm"),
+            values.timings[1].format("HH:mm"),
+            // "10:00","12:00"
           ],
         },
         {
@@ -30,6 +31,8 @@ const ApplyDoctor = () => {
           },
         }
       );
+      console.log(values.timings[0]);
+      console.log(values.timings[1]);
       dispatch(hideLoading());
       if (res.data.success) {
         message.success(res.data.message);
@@ -47,7 +50,7 @@ const ApplyDoctor = () => {
   return (
     <Layout>
       <h1 className=" text_center">ApplyDoctor</h1>
-      <hr/>
+      <hr />
       <Form layout="vertical" onFinish={handleFinish} className="m-3">
         <h4 className="">Personal Details : </h4>
         <Row gutter={20}>

@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  status: {
+    type: String,
+    default: "unblock",
+  },
 });
 
 const userModel = mongoose.model("users", userSchema);

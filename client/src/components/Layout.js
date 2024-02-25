@@ -99,7 +99,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/LayoutStyles.css";
-import { adminMenu, userMenu } from "./../Data/data";
+import { adminMenu, doctorMenu, userMenu } from "./../Data/data";
 import Navbar from "./Navbar";
 
 const Layout = ({ children }) => {
@@ -113,24 +113,6 @@ const Layout = ({ children }) => {
     navigate("/login");
   };
 
-  const doctorMenu = [
-    {
-      name: "Home",
-      path: "/",
-      icon: "fa-solid fa-house",
-    },
-    {
-      name: "Appointments",
-      path: "/doctor-appointment",
-      icon: "fa-solid fa-list",
-    },
-    {
-      name: "Profile",
-      path: `/doctor/profile/${user?._id}`,
-      icon: "fa-solid fa-user",
-    },
-  ];
-
   const SidebarMenu = user?.isAdmin
     ? adminMenu
     : user?.isDoctor
@@ -138,27 +120,22 @@ const Layout = ({ children }) => {
     : userMenu;
 
   return (
-    <div className=" bg-white ">
+    <div className=" bg-white z-50 ">
       {/* Navbar */}
-      <div className="w-screen ">
+      <div className="w-screen z-50 ">
         <Navbar />
       </div>
       {/* Navbar end */}
-      <div className="flex flex-auto">
+      <div className="flex z-50">
         <div className=" bg-slate-900 justify-between w-64">
-          {/* <div className=" text-2xl">
-              <div className="text-center">
-                <h1>Nirogya</h1>
-              </div>
-              <hr />
-            </div> */}
-          <div className="pr-2 pl-2 mt-2 h-screen">
+          <div className="pr-3 pl-2 mt-2 h-screen">
             {SidebarMenu.map((menu) => {
               const isActive = location.pathname === menu.path;
               return (
                 <div className="  transition hover:via-sky-700 duration-700 ease-in-out">
                   <div className={`menu-item ${isActive && "active"}`}>
                     <i className={menu.icon}></i>
+                    
                     <Link to={menu.path}>{menu.name}</Link>
                   </div>
                 </div>
@@ -170,7 +147,7 @@ const Layout = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="h-full">
+        <div className="h-full w-full">
           {/* <div className="header">
               <div className="header-content" style={{ cursor: "pointer" }}>
                 <Badge
