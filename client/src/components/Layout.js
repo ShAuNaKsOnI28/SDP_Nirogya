@@ -98,9 +98,10 @@ import { message } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "../styles/LayoutStyles.css";
-import { adminMenu, doctorMenu, userMenu } from "./../Data/data";
+import { adminMenu, doctorMenu, userMenu } from "../Data/data";
+// import "../styles/LayoutStyles.css";
 import Navbar from "./Navbar";
+import Sidebars from "./Sidebars";
 
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
@@ -113,58 +114,93 @@ const Layout = ({ children }) => {
     navigate("/login");
   };
 
-  const SidebarMenu = user?.isAdmin
+  const ClickItem = user?.isAdmin
     ? adminMenu
     : user?.isDoctor
     ? doctorMenu
     : userMenu;
 
+  const Footer = () => {
+    return (
+      <>
+        <div className="flex flex-col mt-8 items-center gap-y-6 bg-gray-50">
+          <div className="flex gap-x-4 md:gap-x-12 font-medium text-slate-700 justify-center">
+            <a
+              href="#home"
+              className="hover:text-slate-900 hover:scale-110 transistion-all duration-300"
+            >
+              Home
+            </a>
+            <a
+              href="#about"
+              className="hover:text-slate-900 hover:scale-110 transistion-all duration-300"
+            >
+              About
+            </a>
+            <a
+              href="#service"
+              className="hover:text-slate-900 hover:scale-110 transistion-all duration-300"
+            >
+              Services
+            </a>
+            <a
+              href="#contact"
+              className="hover:text-slate-900 hover:scale-110 transistion-all duration-300"
+            >
+              Contact
+            </a>
+            <Link
+              to={"/login"}
+              className="hover:text-slate-900 hover:scale-110 transistion-all duration-300 hidden sm:block"
+            >
+              Join Us
+            </Link>
+          </div>
+          <div className="flex gap-x-6 md:gap-x-12 text-xl text-slate-700 cursor-pointer">
+            <i class="fa-brands fa-facebook hover:text-slate-900 hover:scale-125 transition-all duration-300"></i>
+            <i class="fa-brands fa-instagram hover:text-slate-900 hover:scale-125 transition-all duration-300"></i>
+            <i class="fa-brands fa-twitter hover:text-slate-900 hover:scale-125 transition-all duration-300"></i>
+            <i class="fa-brands fa-github hover:text-slate-900 hover:scale-125 transition-all duration-300"></i>
+            <i class="fa-brands fa-youtube hover:text-slate-900 hover:scale-125 transition-all duration-300"></i>
+          </div>
+          <div className="text-sm text-slate-700">
+            &#169; 2024 Nirogya Pvt. Ltd. All rights reserved.
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
-    <div className=" bg-white z-50 ">
-      {/* Navbar */}
-      <div className="w-screen z-50 ">
-        <Navbar />
-      </div>
-      {/* Navbar end */}
-      <div className="flex z-50">
-        <div className=" bg-slate-900 justify-between w-64">
-          <div className="pr-3 pl-2 mt-2 h-screen">
-            {SidebarMenu.map((menu) => {
-              const isActive = location.pathname === menu.path;
+    <>
+      {/* <header> */}
+      <Navbar />
+      {/* </header> */}
+      <div className="  main ">
+        <body className=" flex flex-row min-h-screen -mb-4 ">
+          <Sidebars />
+          <div className="w-screen">
+            {ClickItem.map((Click) => {
+              const active = location.pathname === Click.path;
               return (
-                <div className="  transition hover:via-sky-700 duration-700 ease-in-out">
-                  <div className={`menu-item ${isActive && "active"}`}>
-                    <i className={menu.icon}></i>
-                    
-                    <Link to={menu.path}>{menu.name}</Link>
-                  </div>
+                <div className={active ? "ClickItem active" : "ClickItem"}>
+                  {active && (
+                    <div className=" text-center text-3xl font-semibold">
+                      {Click.name}
+                    </div>
+                  )}
                 </div>
               );
             })}
-            <div className="menu-item" onClick={handleLogout}>
-              <i className="fa-solid fa-right-from-bracket"></i>
-              <Link to="/login">Logout</Link>
-            </div>
+            <hr />
+            <body className="body px-36 bg-white ">{children}</body>
           </div>
-        </div>
-        <div className="h-full w-full">
-          {/* <div className="header">
-              <div className="header-content" style={{ cursor: "pointer" }}>
-                <Badge
-                  count={user && user.notification.length}
-                  onClick={() => {
-                    navigate("/notification");
-                  }}
-                >
-                  <i className="fa-solid fa-bell"></i>
-                </Badge>
-                <Link to="/profile">{user?.name}</Link>
-              </div>
-            </div> */}
-          <div className="h-screen shadow-slate-400 bg-white">{children}</div>
-        </div>
+        </body>
       </div>
-    </div>
+      {/* <footer> */}
+      <Footer />
+      {/* </footer> */}
+    </>
   );
 };
 

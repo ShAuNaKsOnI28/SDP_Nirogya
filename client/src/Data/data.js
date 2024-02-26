@@ -12,7 +12,7 @@ export const userMenu = [
     icon: "fa-solid fa-house",
   },
   {
-    name: "Appointments",
+    name: "Book Appointments",
     path: "/appointments",
     icon: "fa-solid fa-list",
   },
@@ -22,12 +22,12 @@ export const userMenu = [
     icon: "fa-solid fa-user-doctor",
   },
   {
-    name: "Profile",
+    name: "User Profile",
     path: "/profile",
     icon: "fa-solid fa-user",
   },
   {
-    name: "Notification",
+    name: "User Notification",
     path: "/notification",
     icon: "fa-solid fa-bell",
   },
@@ -35,52 +35,52 @@ export const userMenu = [
 
 // admin menu
 export const adminMenu = [
-  {
-    name: "Home",
-    path: "/",
-    icon: "fa-solid fa-house",
-  },
+  // {
+  //   name: "Home",
+  //   path: "/",
+  //   icon: "fa-solid fa-house",
+  // },
 
   {
-    name: "Doctors",
+    name: "Doctors List",
     path: "/admin/Doctors",
     icon: "fa-solid fa-user-doctor",
   },
   {
-    name: "Users",
+    name: "Users list",
     path: "/admin/Users",
     icon: "fa-solid fa-user",
   },
   {
-    name: "Profile",
+    name: "Admin Profile",
     path: "/profile",
     icon: "fa-solid fa-user",
   },
   {
-    name: "Notification",
+    name: "Admin Notification",
     path: "/notification",
     icon: "fa-solid fa-bell",
   },
 ];
 
 export const doctorMenu = [
+  // {
+  //   name: "Home",
+  //   path: "/",
+  //   icon: "fa-solid fa-house",
+  // },
   {
-    name: "Home",
-    path: "/",
-    icon: "fa-solid fa-house",
-  },
-  {
-    name: "Appointments",
+    name: "Patient Appointments",
     path: "/doctor-appointment",
     icon: "fa-solid fa-list",
   },
   {
-    name: "Profile",
+    name: "Doctor Profile",
     path: `/doctor/profile/${user?._id}`,
     icon: "fa-solid fa-user",
   },
   {
-    name: "Notification",
+    name: "Doctor Notification",
     path: "/notification",
     icon: "fa-solid fa-bell",
   },

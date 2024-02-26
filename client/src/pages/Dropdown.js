@@ -107,6 +107,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import "./../../public/images/avatar.jpg"
 
 const Dropdown = ({ user }) => {
   const [open, setOpen] = useState(false);
@@ -128,22 +129,7 @@ const Dropdown = ({ user }) => {
   }, []);
 
   const handleLogout = () => {
-    // Implement your logout logic here
-    // Example: sign out the user or redirect to the logout page
-    console.log("Logout clicked");
-  };
-
-  const NameHandler = () => {
-    return (
-      <div className="px-2 py-2">
-        <span className="block text-sm text-gray-900 dark:text-white">
-          {user?.name}
-        </span>
-        <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
-          {user?.email}
-        </span>
-      </div>
-    );
+    navigate("/login");
   };
 
   return (
@@ -159,17 +145,14 @@ const Dropdown = ({ user }) => {
         >
           <span className="sr-only">Open user menu</span>
           <img
-            className="w-11 h-11 rounded-full"
-            src="/Users/shaunaksoni/Code Editor/vscode/SDP/SDP_Nirogya/SDP_Nirogya/client/public/images/avatar.jpg "
+            className="w-10 h-10 rounded-full"
+            src="./images/avatar.jpg"
             alt=""
           />
         </button>
 
         {open && (
           <ul className="py-1/2" aria-labelledby="user-menu-button">
-            <li>
-              <NameHandler />
-            </li>
             <li>
               <a
                 href="#"

@@ -2,6 +2,7 @@ import { Table, message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout";
+import "./../../styles/LayoutStyles.css";
 const Users = () => {
   const [users, setUsers] = useState([]);
 
@@ -47,71 +48,78 @@ const Users = () => {
 
   const columns = [
     {
-      title: "Name",
+      title: <span className=" text-center px-3 text-lg">Name</span>,
       dataIndex: "name",
+      render: (text) => <span className="px-3">{text}</span>,
     },
     {
-      title: "Email",
+      title: <span className=" text-center px-3 text-lg">Email</span>,
       dataIndex: "email",
+      render: (text) => <span className="px-3">{text}</span>,
     },
     {
-      title: "Doctors",
+      title: <span className=" text-center px-3 text-lg">Doctor</span>,
       dataIndex: "isDoctor",
-      render: (text, record) => <span>{record.isDoctor ? "Yes" : "No"}</span>,
+      render: (text, record) => (
+        <span className="px-3">{record.isDoctor ? "Yes" : "No"}</span>
+      ),
     },
     {
-      title: "Status",
+      title: <span className=" text-center px-3 text-lg">Status</span>,
       dataIndex: "status",
+      render: (text) => <span className="px-3">{text}</span>,
     },
     {
-      title: "Actions",
+      title: <span className=" text-center px-3 text-lg">Action</span>,
       dataIndex: "actions",
       render: (text, record) => (
-        <div className="d-flex">
-          {record.status === "unblock" ? (
+        <div className="px-3">
+          {record.status === "pending" ? (
             <button
-              className="btn btn-danger"
+              className="btn btn-success text-lg"
+              onClick={() => handleAccountStatus(record, "unblock")}
+            >
+              Unblock
+            </button>
+          ) : record.status === "block" ? (
+            <button
+              className="btn btn-success text-lg"
+              onClick={() => handleAccountStatus(record, "unblock")}
+            >
+              Unblock
+            </button>
+          ) : (
+            <button
+              className="btn btn-danger text-lg"
               onClick={() => handleAccountStatus(record, "block")}
             >
               Block
             </button>
-          ) : (
-            <button
-              className="btn btn-success"
-              // onClick={()=>handleAccountStatus(record, "block")}
-            >
-              Unblock
-            </button>
           )}
         </div>
       ),
-      // render: (text, record) => (
-      // <div className="d-flex">
-      //   {record.status === "pending" ? (
-      //     <button
-      //       className="btn btn-success"
-      //       onClick={() => handleAccountStatus(record, "approved")}
-      //     >
-      //       Approve
-      //     </button>
-      //   ) : (
-      //     <button
-      //       className="btn btn-danger"
-      //       // onClick={() => handleAccountStatus(record, "reject")}
-      //     >
-      //       Reject
-      //     </button>
-      //   )}
-      // </div>
-      // ),
     },
   ];
 
+  for (let i = 0; i < 50; i++) {
+    if (users.length > 10) {
+      users.push({});
+    }
+  }
+
   return (
     <Layout>
-      <h1 className="text-center m-2">User Lists</h1>
-      <hr />
-      <Table columns={columns} dataSource={users} />
+      {/* <h1 className=" text-center text-2xl font-sans font-semibold">
+        User Lists
+      </h1>
+      <hr /> */}
+      <body>
+        <Table
+          columns={columns}
+          dataSource={users}
+          className="pt-2 mx-8 -mb-18"
+        />
+      </body>
     </Layout>
   );
 };

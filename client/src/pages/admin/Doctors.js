@@ -87,19 +87,43 @@ const Doctors = () => {
             >
               Approve
             </button>
+          ) : record.status === "reject" ? (
+            <button
+              className="btn btn-success"
+              onClick={() => handleAccountStatus(record, "approved")}
+            >
+              Approve
+            </button>
           ) : (
-            <button className="btn btn-danger">Reject</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => handleAccountStatus(record, "reject")}
+            >
+              Reject
+            </button>
           )}
         </div>
       ),
     },
   ];
-
+  for (let i = 0; i < 50; i++) {
+    if (doctors.length > 10) {
+      doctors.push({});
+    }
+  }
   return (
     <Layout>
-      <h1 className="text-center m-3">All Doctors</h1>
-      <hr/>
-      <Table columns={columns} dataSource={doctors} />
+      {/* <h1 className="text-center m-2 text-2xl font-sans font-semibold">
+        All Doctors
+      </h1>
+      <hr /> */}
+      <body>
+        <Table
+          columns={columns}
+          dataSource={doctors}
+          className="pt-2 mx-8 -mb-18"
+        />
+      </body>
     </Layout>
   );
 };
