@@ -16,6 +16,7 @@ import Doctors from "./pages/admin/Doctors";
 import Users from "./pages/admin/Users";
 import DoctorAppointment from "./pages/doctor/DoctorAppointment";
 import Profile from "./pages/doctor/Profile";
+import HomePageUser from "./pages/HomePageUser";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -126,6 +127,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <HomePage />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/homepageuser"
+              element={
+                <ProtectedRoute>
+                  <HomePageUser />
                 </ProtectedRoute>
               }
             />

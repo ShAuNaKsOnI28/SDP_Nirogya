@@ -64,11 +64,11 @@ export const adminMenu = [
 ];
 
 export const doctorMenu = [
-  // {
-  //   name: "Home",
-  //   path: "/",
-  //   icon: "fa-solid fa-house",
-  // },
+  {
+    name: "Patient List",
+    path: "/homepageuser",
+    icon: "fa-solid fa-house",
+  },
   {
     name: "Patient Appointments",
     path: "/doctor-appointment",

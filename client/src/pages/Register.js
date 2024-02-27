@@ -1,6 +1,6 @@
 import { Form, Input, Radio, message } from "antd";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
@@ -9,7 +9,7 @@ import { hideLoading, showLoading } from "../redux/features/alertSlice";
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isDoctor, setIsDoctor] = useState(false);
+  // const [isDoctor, setIsDoctor] = useState(false);
 
   const onFinishHandler = async (values) => {
     try {
@@ -36,12 +36,12 @@ const Register = () => {
         <div className=" absolute rotate-45 -top-40 left-0 rounded-2xl h-80 w-96 bg-blue-900"></div>
         <div className="absolute rotate-45 -bottom-32 -right-2 rounded-2xl h-96 w-96 bg-orange-600"></div>
         <div className="z-50 flex bg-emerald-300 justify-center items-center rounded-3xl">
-          <div className="w-3/5">
+          <div className=" w-3/5">
             <img src="images/doctor12.png" />
           </div>
           <div className=" transition-transform transform duration-300 scale-100 hover:scale-105">
-            <div className="w-2/5 mx-6 mr-12">
-              <div className="z-40 h-full bg-emerald-200 rounded-xl shadow-2xl shadow-slate-300 p-4 m-3 pt-5 w-96 ">
+            <div className="w-2/5 mx-7 mr-12">
+              <div className="z-50 h-full bg-emerald-200 rounded-xl shadow-2xl shadow-slate-300 p-4 m-3 pt-4 w-96 ">
                 <h1 className="text-center text-emerald-700 text-2xl font-bold uppercase flex justify-center flex-col items-center">
                   Register
                   <hr className="border-emerald-700 border-2 bg-emerald-700 rounded-lg mt-1 w-6" />
@@ -53,15 +53,39 @@ const Register = () => {
                   className="register-form"
                 >
                   <Form.Item
+                    name="salutation"
+                    rules={[
+                      { required: true, message: "Salutation is required" },
+                    ]}
+                  >
+                    <Input
+                      type="text"
+                      placeholder="Mr./Mrs./Ms."
+                      className="w-full rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
+                    />
+                  </Form.Item>
+                  {/* <div className="flex "> */}
+                  <Form.Item
                     name="name"
                     rules={[{ required: true, message: "Name is required" }]}
                   >
                     <Input
                       type="text"
                       placeholder="Name"
-                      className="w-full rounded-md border border-stroke bg-white px-5 py-3 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
+                      className="rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
                     />
                   </Form.Item>
+                  {/* <Form.Item
+                      name="name"
+                      rules={[{ required: true, message: "Name is required" }]}
+                    >
+                      <Input
+                        type="text"
+                        placeholder="Name"
+                        className="rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
+                      />
+                    </Form.Item> */}
+                  {/* </div> */}
                   <Form.Item
                     name="email"
                     rules={[{ required: true, message: "Email is required" }]}
@@ -69,7 +93,7 @@ const Register = () => {
                     <Input
                       type="email"
                       placeholder="Email"
-                      className="w-full rounded-md border border-stroke bg-white px-5 py-3 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
+                      className="w-full rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
                     />
                   </Form.Item>
                   <Form.Item
@@ -81,11 +105,20 @@ const Register = () => {
                     <Input
                       type="password"
                       placeholder="Password"
-                      className="w-full rounded-md border border-stroke bg-white px-5 py-3 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
+                      className="w-full rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
                     />
                   </Form.Item>
                   <Form.Item
-                    label="UserType"
+                    name="gender"
+                    rules={[{ required: true, message: "gender is required" }]}
+                  >
+                    <Radio.Group>
+                      <Radio value="male">Male</Radio>
+                      <Radio value="female">female</Radio>
+                      <Radio value="other">other</Radio>
+                    </Radio.Group>
+                  </Form.Item>
+                  {/* <Form.Item
                     name="isDoctor"
                     rules={[
                       { required: true, message: "User type is required" },
@@ -95,7 +128,7 @@ const Register = () => {
                       <Radio value={true}>Doctor</Radio>
                       <Radio value={false}>Patient</Radio>
                     </Radio.Group>
-                  </Form.Item>
+                  </Form.Item> */}
                   <Link to="/login" className="m-2 text-blue-500">
                     Already a user? Login here
                   </Link>

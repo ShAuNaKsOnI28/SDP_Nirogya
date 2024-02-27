@@ -85,6 +85,11 @@ const applyDoctorController = async (req, res) => {
   try {
     const newDoctor = await doctorModel({ ...req.body, status: "pending" });
     await newDoctor.save();
+    const user = await userModel.findOne({ _id: req.body.userId });
+    // console.log(user);
+    user.isDoctor = true;
+    // console.log(user);
+    await user.save();
     const adminUser = await userModel.findOne({ isAdmin: true });
     const notification = adminUser.notification;
     notification.push({
@@ -93,6 +98,7 @@ const applyDoctorController = async (req, res) => {
       data: {
         doctorId: newDoctor._id,
         name: newDoctor.FirstName + " " + newDoctor.LastName,
+
         onclickPath: "/admin/doctor",
       },
     });
@@ -172,6 +178,24 @@ const getAllDoctorsController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "error while fetching doctor",
+      error,
+    });
+  }
+};
+
+const getAllUsersController = async (req, res) => {
+  try {
+    const users = await userModel.find({ isAdmin: false, isDoctor: false });
+    res.status(200).send({
+      success: true,
+      message: "User List fetch Successfully",
+      data: users,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error while fetching users",
       error,
     });
   }
@@ -308,4 +332,5 @@ module.exports = {
   bookingAvailabilityController,
   userAppointmentsController,
   getUsersDataController,
+  getAllUsersController,
 };
