@@ -123,8 +123,8 @@ const Layout = ({ children }) => {
   const Footer = () => {
     return (
       <>
-        <div className="flex flex-col mt-8 items-center gap-y-6 bg-gray-50">
-          <div className="flex gap-x-4 md:gap-x-12 font-medium text-slate-700 justify-center">
+        <div className=" h-fit z-50 flex flex-col mt-8 items-center gap-y-6  md:bg-white dark:bg-black md:text-black dark:text-white">
+          <div className="flex gap-x-4 md:gap-x-12 font-medium md:bg-white dark:bg-black md:text-black dark:text-white text-slate-700 justify-center">
             <a
               href="#home"
               className="hover:text-slate-900 hover:scale-110 transistion-all duration-300"
@@ -173,13 +173,13 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/* <header> */}
+      {/* <header className="h-1/3 overflow-clip w-8/12"> */}
       <Navbar />
       {/* </header> */}
-      <div className="  main ">
-        <body className=" flex flex-row min-h-screen -mb-4 ">
+      <div className=" z-50 main">
+        <body className="flex min-h-screen  ">
           <Sidebars />
-          <div className="w-screen">
+          <div className="w-full">
             {ClickItem.map((Click) => {
               const active = location.pathname === Click.path;
               return (
@@ -193,13 +193,15 @@ const Layout = ({ children }) => {
               );
             })}
             <hr />
-            <body className="body px-36 bg-white ">{children}</body>
+            <body className="body px-30 min-h-screen min-w-screen md:bg-white dark:bg-black">
+              {children}
+            </body>
           </div>
         </body>
       </div>
-      {/* <footer> */}
-      <Footer />
-      {/* </footer> */}
+      <footer className="min-h-full overflow-clip">
+        <Footer />
+      </footer>
     </>
   );
 };

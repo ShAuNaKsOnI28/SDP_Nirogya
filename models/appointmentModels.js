@@ -30,6 +30,33 @@ const appointmentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    FirstName: {
+      type: String,
+    },
+    LastName: {
+      type: String,
+    },
+    Phone: {
+      type: String,
+    },
+    Email: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    salutation: { type: String },
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+    },
+    bloodgroup: {
+      type: String,
+      enum: ["A+", "B+", "O+", "A-", "B-", "O-", "AB+", "AB-"],
+    },
   },
   { timestamps: true }
 );

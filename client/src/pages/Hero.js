@@ -240,7 +240,6 @@
 //   );
 // };
 
-import { Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -298,16 +297,6 @@ const Landing = () => {
           </div>
         </div>
         <div className="flex-1 basis-1/2">
-          {/* <div className="absolute top-0 right-0 p-12"> */}
-          <Button
-            onClick={() => {
-              Navigate("/login");
-            }}
-            className=" px-4 mr-10 py-2 ht-60 bg-blue-300 font-semibold hover:text-slate-900 hover:scale-110 transistion-all duration-300 hidden sm:block"
-          >
-            Join Us
-          </Button>
-          {/* </div> */}
           <img src="./images/landing.png" />
         </div>
       </div>

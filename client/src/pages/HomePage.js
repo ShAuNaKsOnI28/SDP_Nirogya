@@ -29,8 +29,6 @@ const HomePage = () => {
   return (
     <Layout>
       <div className="homepage-container">
-        <h1 className="homepage-title">Welcome to Nirogya</h1>
-        <hr />
         <Row className="doctor-list-container">
           {doctors &&
             doctors.map((doctor) => (

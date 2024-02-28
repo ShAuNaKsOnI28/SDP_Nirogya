@@ -1,8 +1,10 @@
 import { Table, message } from "antd";
+// import "antd/dist/antd.css";
 import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout";
+import "./../../styles/LayoutStyles.css";
 
 const DoctorAppointment = () => {
   const [appointments, setAppointments] = useState([]);
@@ -32,6 +34,9 @@ const DoctorAppointment = () => {
         {
           appointmentsId: record._id,
           status,
+          // doctorInfo: record.doctorInfo,
+          // userInfo: record.userInfo,
+          // userId: record.userId,
         },
         {
           headers: {
@@ -51,42 +56,40 @@ const DoctorAppointment = () => {
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "_id",
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
+      title: <span className="">Name</span>,
       render: (text, record) => (
-        <span>
-          {record.doctorInfo.FirstName} {record.doctorInfo.LastName}
+        <span className="">
+          {record.salutation}
+          {record.name}
         </span>
       ),
     },
     {
-      title: "Phone",
-      dataIndex: "phone",
-      render: (text, record) => <span>{record.doctorInfo.Phone}</span>,
+      title: <span className="">Gender</span>,
+      render: (text, record) => <span className="">{record.gender}</span>,
     },
     {
-      title: "Date & Time",
-      dataIndex: "date",
+      title: <span className="">Blood Group</span>,
+      render: (text, record) => <span className="">{record.bloodgroup}</span>,
+    },
+    {
+      title: <span className="">Date & Time</span>,
       render: (text, record) => (
-        <span>
-          {moment(record.date).format("DD-MM-YYYY")} &nbsp;
+        <span className="">
+          {moment(record.date).format("DD-MM-YYYY")}
           {moment(record.time).format("HH:mm")}
         </span>
       ),
     },
     {
-      title: "Status",
+      title: <span className="">Status</span>,
       dataIndex: "status",
     },
     {
-      title: "Actions",
+      title: <span className="">Actions</span>,
       dataIndex: "actions",
       render: (text, record) => (
-        <div className=" flex">
+        <div className="flex">
           {record.status === "pending" && (
             <div className="flex">
               <button
@@ -113,11 +116,11 @@ const DoctorAppointment = () => {
   ];
   return (
     <Layout>
-      <div className="text-center">
-        <h1>Appoinmtnets Lists</h1>
-      </div>
-      <hr />
-      <Table columns={columns} dataSource={appointments} />
+      <Table
+        columns={columns}
+        dataSource={appointments}
+        className="md:bg-white dark:bg-black m-2"
+      />
     </Layout>
   );
 };

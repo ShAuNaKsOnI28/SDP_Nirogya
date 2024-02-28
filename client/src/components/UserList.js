@@ -7,7 +7,7 @@ const UserList = ({ user }) => {
       <div
         className="card m-2 user-card"
         // style={{ cursor: "pointer" }}
-        // onClick={() => navigate(`/doctor/book-appointment/${user._id}`)}
+        // onClick={() => navigate(`/doctor/abook-appointment/${user._id}`)}
       >
         <div className="card-header">
           {user.salutation} {user.name}
@@ -21,11 +21,11 @@ const UserList = ({ user }) => {
             <b>Gender: </b>
             {user.gender}
           </p>
-          {/* <p>
-            <b>Fees per Consultation: </b>
-            {user.FeesPerConsultation}
-          </p>
           <p>
+            <b>Blood Group: </b>
+            {user.bloodgroup}
+          </p>
+          {/*<p>
             <b>Timings: </b> {user.timings[0]} - {user.timings[1]}
           </p> */}
         </div>

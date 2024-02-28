@@ -19,6 +19,7 @@ const Login = () => {
 
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
+        console.log(res.data.token);
         navigate("/");
         message.success("Login Successfully");
       } else {
@@ -49,11 +50,7 @@ const Login = () => {
                   <br />
                 </h1>
 
-                <Form
-                  layout="vertical"
-                  onFinish={onfinishHandler}
-                  className="register-form"
-                >
+                <Form layout="vertical" onFinish={onfinishHandler} className="">
                   <Form.Item name="email">
                     <Input
                       type="email"

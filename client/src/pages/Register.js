@@ -65,17 +65,17 @@ const Register = () => {
                     />
                   </Form.Item>
                   {/* <div className="flex "> */}
-                  <Form.Item
-                    name="name"
-                    rules={[{ required: true, message: "Name is required" }]}
-                  >
-                    <Input
-                      type="text"
-                      placeholder="Name"
-                      className="rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
-                    />
-                  </Form.Item>
-                  {/* <Form.Item
+                    <Form.Item
+                      name="name"
+                      rules={[{ required: true, message: "Name is required" }]}
+                    >
+                      <Input
+                        type="text"
+                        placeholder="Enter your Full Name"
+                        className="rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
+                      />
+                    </Form.Item>
+                    {/* <Form.Item
                       name="name"
                       rules={[{ required: true, message: "Name is required" }]}
                     >
@@ -92,7 +92,17 @@ const Register = () => {
                   >
                     <Input
                       type="email"
-                      placeholder="Email"
+                      placeholder="Enter you Full Email"
+                      className="w-full rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="bloodgroup"
+                    rules={[{ required: true, message: "Blood Group is required" }]}
+                  >
+                    <Input
+                      type="text"
+                      placeholder="Enter you Blood Group"
                       className="w-full rounded-md border border-stroke bg-white px-5 py-2 text-base text-body-color outline-none focus:border-primary  dark:border-dark-3 dark:text-black"
                     />
                   </Form.Item>

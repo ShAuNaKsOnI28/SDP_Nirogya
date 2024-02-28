@@ -1,6 +1,5 @@
 import { DatePicker, message, TimePicker } from "antd";
 import axios from "axios";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,7 +15,7 @@ const BookingPage = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const dispatch = useDispatch();
   // login user data
-  const getUserData = async () => {
+  const getDoctorData = async () => {
     try {
       const res = await axios.post(
         "/api/v1/doctor/getDoctorById",
@@ -51,6 +50,15 @@ const BookingPage = () => {
           userInfo: user,
           date: date,
           time: time,
+          FirstName: doctors.FirstName,
+          LastName: doctors.LastName,
+          Email: doctors.Email,
+          Phone: doctors.Phone,
+          name: user.name,
+          salutation: user.salutation,
+          gender: user.gender,
+          email: user.email,
+          bloodgroup: user.bloodgroup,
         },
         {
           headers: {
@@ -95,7 +103,7 @@ const BookingPage = () => {
   };
 
   useEffect(() => {
-    getUserData();
+    getDoctorData();
     //eslint-disable-next-line
   }, []);
 
@@ -114,7 +122,7 @@ const BookingPage = () => {
             <h4>Fees : {doctors.FeesPerConsultation}</h4>
             <h4>
               Timings : {time}
-              {doctors.timings && doctors.timings[0]} -{" "}
+              {doctors.timings && doctors.timings[0]}-{" "}
               {doctors.timings && doctors.timings[1]}{" "}
             </h4>
             <div className="d-flex flex-column w-50">
@@ -122,14 +130,14 @@ const BookingPage = () => {
                 className="m-2"
                 format="DD-MM-YYYY"
                 onChange={(value) => {
-                  setDate(moment(value).format("DD-MM-YYYY"));
+                  setDate(value.format("DD-MM-YYYY"));
                 }}
               />
               <TimePicker
                 format="HH:mm"
                 className="m-2"
                 onChange={(value) => {
-                  setTime(moment(value).format("HH:mm"));
+                  setTime(value.format("HH:mm"));
                 }}
               />
               <button

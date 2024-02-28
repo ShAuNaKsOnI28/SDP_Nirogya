@@ -7,6 +7,7 @@ import "../styles/LayoutStyles.css";
 
 const Sidebars = () => {
   const { user } = useSelector((state) => state.user);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -24,15 +25,14 @@ const Sidebars = () => {
 
   return (
     <>
-      <div className=" bg-slate-900 justify-between w-80 ">
-        <div className=" pl-2 mt-3">
+      <div className=" md:bg-gray-100 dark:bg-gray-900 justify-between ">
+        <div className=" pl-2 mt-3 ">
           {SidebarMenu.map((menu) => {
             const isActive = location.pathname === menu.path;
             return (
-              <div className="  transition hover:via-sky-700 duration-700 ease-in-out">
+              <div className="w-64">
                 <div className={`menu-item ${isActive && "active"}`}>
                   <i className={menu.icon}></i>
-
                   <Link to={menu.path}>{menu.name}</Link>
                 </div>
               </div>

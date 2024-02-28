@@ -1,19 +1,33 @@
 .menu-item {
   margin-top: 20px;
   padding: 10px;
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.8s ease-in-out;
 }
 
 .menu-item a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 1.2rem;
+}
+@media(prefers-color-scheme: dark) {
+  .menu-item a {
+    color: white;
+    text-decoration: none;
+  font-size: 1.2rem;
+  }
 }
 
 .menu-item i {
   font-size: 1.5rem;
   margin-right: 15px;
-  color: #fff;
+  color: black;
+}
+@media(prefers-color-scheme: dark) {
+  .menu-item i {
+    color: white;
+    font-size: 1.5rem;
+  margin-right: 15px;
+  }
 }
 
 .menu-item:hover {
@@ -22,10 +36,68 @@
 
 .menu-item:hover a,
 .menu-item:hover i {
-  color: #fff; 
+  color: black; 
+}
+@media(prefers-color-scheme: dark) {
+  .menu-item :hover a,.menu-item :hover i {
+    color: white;
+  }
 }
 
 .active a,
 .active i {
+  color: black;
+}
+@media(prefers-color-scheme: dark) {
+  .active a,.active i {
+    color: white;
+  }
+}
+
+/* .body {
+  /* padding: 10px; 
+  margin: 0%;
+  background-color: aqua;
+}
+
+.table-header {
+  background-color: #007bff;
+  color: white;
+  margin: -10px;
+  margin-bottom: -10px;
+  font-size:medium;
+  font-weight: bold;
+} */
+/* DoctorAppointment.css */
+
+/* Table Header styles */
+/* .table-header {
+  display: block;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+/* Custom styles for each column 
+.table-column {
+  display: block;
+  padding: 10px;
+  margin: -5px;
+}
+
+/* Styles for the Actions buttons 
+.btn {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #28a745;
   color: #fff;
 }
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+ */
