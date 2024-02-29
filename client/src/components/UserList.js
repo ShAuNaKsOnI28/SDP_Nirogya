@@ -5,14 +5,14 @@ const UserList = ({ user }) => {
   return (
     <>
       <div
-        className="card m-2 user-card"
+        className="card m-2 user-card rounded-none flex-1"
         // style={{ cursor: "pointer" }}
         // onClick={() => navigate(`/doctor/abook-appointment/${user._id}`)}
       >
-        <div className="card-header">
+        <div className="card-header md:bg-gray-100 dark:bg-gray-800 md:text-black dark:text-white">
           {user.salutation} {user.name}
         </div>
-        <div className="card-body">
+        <div className="card-body md:bg-white dark:bg-black md:text-black dark:text-white">
           <p>
             <b>Email: </b>
             {user.email}

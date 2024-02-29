@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import "../styles/Navbar.css";
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -29,7 +30,7 @@ const Appointments = () => {
     {
       title: "Name",
       render: (text, record) => (
-        <span>
+        <span className="flex p-2 bg-black">
           {record.FirstName} {record.LastName}
         </span>
       ),
@@ -55,7 +56,14 @@ const Appointments = () => {
 
   return (
     <Layout>
-      <Table columns={columns} dataSource={appointments} />
+      <Table
+        columns={columns}
+        dataSource={appointments}
+        bordered
+        size="middle"
+        style={{ backgroundColor: "red" }}
+        className="custom-ant-table"
+      />
     </Layout>
   );
 };

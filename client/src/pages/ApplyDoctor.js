@@ -1,6 +1,5 @@
 import { Col, Form, Input, Row, TimePicker, message } from "antd";
 import axios from "axios";
-import moment from "moment";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +10,7 @@ const ApplyDoctor = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const [isDoctor, setIsDoctor] = useState(false);
   const handleFinish = async (values) => {
     try {
       dispatch(showLoading());
@@ -19,6 +19,7 @@ const ApplyDoctor = () => {
         {
           ...values,
           userId: user._id,
+
           timings: [
             values.timings[0].format("HH:mm"),
             values.timings[1].format("HH:mm"),
@@ -37,6 +38,7 @@ const ApplyDoctor = () => {
       if (res.data.success) {
         message.success(res.data.message);
         navigate("/");
+        window.location.reload();
       } else {
         message.error(res.data.message);
       }
@@ -49,9 +51,7 @@ const ApplyDoctor = () => {
 
   return (
     <Layout>
-      <h1 className=" text_center">ApplyDoctor</h1>
-      <hr />
-      <Form layout="vertical" onFinish={handleFinish} className="m-3">
+      {/* <Form layout="vertical" onFinish={handleFinish} className="m-3">
         <h4 className="">Personal Details : </h4>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
@@ -147,9 +147,208 @@ const ApplyDoctor = () => {
               <TimePicker.RangePicker format="HH:mm" />
             </Form.Item>
           </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="Are you sure to submit the details"
+              // name="isDoctor"
+              rules={[
+                { required: true, message: "please select the required" },
+              ]}
+            >
+              {/* <Radio.Group onChange={(e) => setIsDoctor(e.target.value)}>
+                <Radio value={true}>yes</Radio>
+                <Radio value={false}>no</Radio> 
+              <Radio.Group>
+                <Radio>yes</Radio>
+                <Radio>no</Radio>
+              </Radio.Group>
+            </Form.Item>
+          </Col>
+
           <Col xs={24} md={24} lg={8}></Col>
           <Col xs={24} md={24} lg={8}>
-            <button className="btn btn-primary form-btn" type="submit">
+            <button className="btn btn-primary bg-blue-500" type="submit">
+              Submit
+            </button>
+          </Col>
+        </Row>
+      </Form> */}
+      <Form layout="vertical" onFinish={handleFinish} className="mx-3">
+        <h4 className=" text-lg  md:text-black pt-3 dark:text-white font-semibold mb-4">
+          Personal Details :{" "}
+        </h4>
+        <Row gutter={20}>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white ">
+                  First Name
+                </span>
+              }
+              name="FirstName"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="text"
+                placeholder="your first name"
+                className="w-full border p-2 rounded "
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">Last Name</span>
+              }
+              name="LastName"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="text"
+                placeholder="your last name"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">Phone No</span>
+              }
+              name="Phone"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="text"
+                placeholder="your contact no"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">Email</span>
+              }
+              name="Email"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="email"
+                placeholder="your email address"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">Website</span>
+              }
+              name="Website"
+            >
+              <Input
+                type="text"
+                placeholder="your website"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">Address</span>
+              }
+              name="Address"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="text"
+                placeholder="your clinic address"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <h4 className=" text-lg font-semibold mb-4 md:text-black dark:text-white">
+          Professional Details :
+        </h4>
+        <Row gutter={20}>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">
+                  Specialization
+                </span>
+              }
+              name="Specialization"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="text"
+                placeholder="your specialization"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">Experince</span>
+              }
+              name="Experince"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="text"
+                placeholder="your experience"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">
+                  Fees Per Consultation
+                </span>
+              }
+              name="FeesPerConsultation"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input
+                type="text"
+                placeholder="your consultation fees"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="md:text-black dark:text-white">Timings</span>
+              }
+              name="timings"
+              className="mb-0"
+              required
+            >
+              <TimePicker.RangePicker format="HH:mm" className="w-full" />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}></Col>
+          <Col xs={24} md={24} lg={8}>
+            <button
+              className="btn btn-primary form-btn py-2 px-4 bg-blue-500 md:text-black dark:text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+              type="submit"
+            >
               Submit
             </button>
           </Col>

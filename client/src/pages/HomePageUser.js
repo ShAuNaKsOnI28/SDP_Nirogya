@@ -1,7 +1,7 @@
-import { Row } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { Row } from "antd";
 import UserList from "../components/UserList";
 
 const HomePageUser = () => {
@@ -28,7 +28,7 @@ const HomePageUser = () => {
   return (
     <Layout>
       <div className="homepage-container">
-        <Row className="doctor-list-container">
+        <Row className="doctor-list-container flex-wrap justify-center">
           {users &&
             users.map((user) => <UserList key={user._id} user={user} />)}
         </Row>

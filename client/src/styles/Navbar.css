@@ -1,28 +1,49 @@
 
-.header-content {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  justify-content: space-between;
-  padding: 0 20px;
-  background-color: #4da6ff; 
-  color: #fff;
-}
+/* .header-content {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #4da6ff; 
+    color: #fff;
+  }
+  
+  .header-content i {
+    font-size: 1.5rem;
+  }
+  
+  .header-content a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-left: 20px;
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .header-content a:hover {
+    color: #007bff;
+  }
+   */
 
-.header-content i {
-  font-size: 1.5rem;
-}
+   /* Custom styling for the Ant Design table */
 
-.header-content a {
-  text-decoration: none;
-  font-size: 1.2rem;
-  color: #fff;
-  margin-left: 20px;
-  text-transform: uppercase;
-  transition: color 0.3s ease-in-out;
-}
-
-.header-content a:hover {
-  color: #007bff;
-}
-
+   .custom-ant-table {
+    margin-top: 20px;
+    /* Add more custom styles as needed */
+  }
+  
+  /* Custom styling for the table header */
+  .custom-ant-table{
+    background-color: #ff0000;
+  
+  }
+  
+  /* Custom styling for the table rows */
+  .custom-ant-table tbody {
+    background-color:black;
+  
+  }
+  
+    

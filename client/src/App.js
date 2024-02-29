@@ -8,6 +8,7 @@ import Appointments from "./pages/Appointments";
 import BookingPage from "./pages/BookingPage";
 import Hero from "./pages/Hero";
 import HomePage from "./pages/HomePage";
+import HomePageUser from "./pages/HomePageUser";
 import Login from "./pages/Login";
 import NotificationPage from "./pages/NotificationPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -16,9 +17,9 @@ import Doctors from "./pages/admin/Doctors";
 import Users from "./pages/admin/Users";
 import DoctorAppointment from "./pages/doctor/DoctorAppointment";
 import Profile from "./pages/doctor/Profile";
-import HomePageUser from "./pages/HomePageUser";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
+  const { user } = useSelector((state) => state.user);
   return (
     <>
       <BrowserRouter>
@@ -130,7 +131,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-             <Route
+            <Route
               path="/homepageuser"
               element={
                 <ProtectedRoute>

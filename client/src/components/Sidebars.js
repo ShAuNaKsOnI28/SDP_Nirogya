@@ -25,7 +25,7 @@ const Sidebars = () => {
 
   return (
     <>
-      <div className=" md:bg-gray-100 dark:bg-gray-900 justify-between ">
+      <div className=" md:bg-gray-100 md:shadow-inner dark:bg-gray-900 -mb-10 justify-between ">
         <div className=" pl-2 mt-3 ">
           {SidebarMenu.map((menu) => {
             const isActive = location.pathname === menu.path;

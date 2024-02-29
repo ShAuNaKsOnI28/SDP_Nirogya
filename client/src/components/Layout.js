@@ -176,29 +176,29 @@ const Layout = ({ children }) => {
       {/* <header className="h-1/3 overflow-clip w-8/12"> */}
       <Navbar />
       {/* </header> */}
-      <div className=" z-50 main">
-        <body className="flex min-h-screen  ">
-          <Sidebars />
-          <div className="w-full">
-            {ClickItem.map((Click) => {
-              const active = location.pathname === Click.path;
-              return (
-                <div className={active ? "ClickItem active" : "ClickItem"}>
-                  {active && (
-                    <div className=" text-center text-3xl font-semibold">
-                      {Click.name}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-            <hr />
-            <body className="body px-30 min-h-screen min-w-screen md:bg-white dark:bg-black">
-              {children}
-            </body>
-          </div>
-        </body>
-      </div>
+      {/* <div className="main"> */}
+      <body className="flex min-h-screen ">
+        <Sidebars />
+        <div className="w-full pt-3 dark:bg-black md:bg-white">
+          {ClickItem.map((Click) => {
+            const active = location.pathname === Click.path;
+            return (
+              <div className={active ? "ClickItem active" : "ClickItem"}>
+                {active && (
+                  <div className=" text-center text-4xl pb-4 font-semibold md:bg-white md:text-black dark:text-white dark:bg-black">
+                    {Click.name}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+          <hr />
+          <body className="body px-30 min-h-screen min-w-screen md:bg-white dark:bg-black">
+            {children}
+          </body>
+        </div>
+      </body>
+      {/* </div> */}
       <footer className="min-h-full overflow-clip">
         <Footer />
       </footer>

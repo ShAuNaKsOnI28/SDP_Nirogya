@@ -113,10 +113,6 @@ const Doctors = () => {
   }
   return (
     <Layout>
-      {/* <h1 className="text-center m-2 text-2xl font-sans font-semibold">
-        All Doctors
-      </h1>
-      <hr /> */}
       <body>
         <Table
           columns={columns}
