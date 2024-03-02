@@ -347,31 +347,7 @@ const Navbar = () => {
             Nirogya
           </span>
         </a>
-        <div className=" -mr-8 flex items-center p-2 md:p-0 mb-2 mt-2/3 md:order-2 md:text-black dark:text-white md:bg-inherit ltr:space-x-reverse">
-          {user ? (
-            <>
-              <div className=" -mr-8 flex items-center p-2 md:p-0 mb-2 mt-2/3 md:order-2 border border-gray-100 bg-gray-50 md:text-black md:bg-white space-x-3 dark:bg-gray-800 dark:border-gray-700 rounded-lg md:space-x-0 ltr:space-x-reverse">
-                <div className=" p-1/2 mr-1">
-                  <span className="block pr-2 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    <span className="mx-2">{user?.name}</span>
-                    <br />
-                    <span className="mx-2">{user?.email}</span>
-                  </span>
-                </div>
-                <Dropdown />
-              </div>
-            </>
-          ) : (
-            <>
-              <Button
-                className=" h-12 w-20  dark:text-white text-lg font-medium bg-blue-500 "
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </Button>
-            </>
-          )}
-        </div>
+
         <div
           className="flex flex-row items-center -mt-2 mb-2 gap-x-8 font-medium text-md"
           id="navbar-user"
@@ -403,6 +379,32 @@ const Navbar = () => {
               Contact
             </a>
           </div>
+        </div>
+
+        <div className=" -mr-10 flex items-center p-2 md:p-0 mb-2 mt-2/3 md:order-2 md:text-black dark:text-white md:bg-inherit ltr:space-x-reverse">
+          {user ? (
+            <>
+              <div className=" -mr-8 flex items-center p-2 md:p-0 mb-2 mt-2/3 md:order-2 border border-gray-100 bg-gray-50 md:text-black md:bg-white space-x-3 dark:bg-gray-800 dark:border-gray-700 rounded-lg md:space-x-0 ltr:space-x-reverse">
+                <div className=" p-1/2 mr-1">
+                  <span className="block pr-2 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                    <span className="mx-2">{user?.name}</span>
+                    <br />
+                    <span className="mx-2">{user?.email}</span>
+                  </span>
+                </div>
+                <Dropdown />
+              </div>
+            </>
+          ) : (
+            <>
+              <Button
+                className=" h-12 w-20  dark:text-white text-lg font-medium bg-blue-500 "
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

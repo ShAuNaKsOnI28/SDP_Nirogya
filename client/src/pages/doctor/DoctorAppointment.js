@@ -76,7 +76,8 @@ const DoctorAppointment = () => {
       title: <span className="">Date & Time</span>,
       render: (text, record) => (
         <span className="">
-          {moment(record.date).format("DD-MM-YYYY")}
+          {moment(record.date).format("DD/MM/YYYY")}
+          {"  "}
           {moment(record.time).format("HH:mm")}
         </span>
       ),
@@ -119,8 +120,64 @@ const DoctorAppointment = () => {
       <Table
         columns={columns}
         dataSource={appointments}
-        className="md:bg-white dark:bg-black m-2"
+        className="md:bg-red-700 dark:bg-black p-2"
+        bordered
+        size="middle"
+        pagination={{ pageSize: 5 }}
       />
+      {/* <div className="table-container">
+      <table className="custom-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Blood Group</th>
+            <th>Date & Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {columns.map(record => (
+            <tr key={record.id}>
+              <td>
+                {record.salutation}
+                {record.name}
+              </td>
+              <td>{record.gender}</td>
+              <td>{record.bloodgroup}</td>
+              <td>
+                {moment(record.date).format('DD-MM-YYYY')}{' '}
+                {moment(record.time).format('HH:mm')}
+              </td>
+              <td>{record.status}</td>
+              <td>
+                {record.status === 'pending' && (
+                  <div className="flex">
+                    <button
+                      className="btn p-2 m-2 btn-success"
+                      onClick={() => {
+                        handleStatus(record, 'approved');
+                      }}
+                    >
+                      Approve
+                    </button>
+                    <button
+                      className="btn p-2 m-2 btn-danger"
+                      onClick={() => {
+                        handleStatus(record, 'reject');
+                      }}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div> */}
     </Layout>
   );
 };

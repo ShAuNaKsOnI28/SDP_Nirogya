@@ -250,7 +250,7 @@ const Home = () => {
       <Landing />
       <About />
       <Services />
-      <Available />
+      {/* <Available /> */}
       <GoodLife />
       <Footer />
     </>

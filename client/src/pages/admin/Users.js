@@ -101,23 +101,14 @@ const Users = () => {
     },
   ];
 
-  for (let i = 0; i < 50; i++) {
-    if (users.length > 10) {
-      users.push({});
-    }
-  }
-
   return (
     <Layout>
-      {/* <h1 className=" text-center text-2xl font-sans font-semibold">
-        User Lists
-      </h1>
-      <hr /> */}
-      <body>
+      <body className=" md:bg-white dark:bg-black">
         <Table
           columns={columns}
           dataSource={users}
-          className="pt-2 mx-8 -mb-18"
+          className="pt-2 mx-8 -mb-18 bg-white"
+          pagination={{ pageSize: 5 }}
         />
       </body>
     </Layout>

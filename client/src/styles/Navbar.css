@@ -28,22 +28,22 @@
    */
 
    /* Custom styling for the Ant Design table */
+/* 
+.custom-ant-table {
+  margin-top: 20px;
+  /* Add more custom styles as needed 
+}
 
-   .custom-ant-table {
-    margin-top: 20px;
-    /* Add more custom styles as needed */
-  }
+/* Custom styling for the table header 
+.custom-ant-table th{
+  background-color: #ff0000;
+
+}
+
+/* Custom styling for the table rows 
+.custom-ant-table tbody {
+  background-color:black;
+
+} */
+
   
-  /* Custom styling for the table header */
-  .custom-ant-table{
-    background-color: #ff0000;
-  
-  }
-  
-  /* Custom styling for the table rows */
-  .custom-ant-table tbody {
-    background-color:black;
-  
-  }
-  
-    

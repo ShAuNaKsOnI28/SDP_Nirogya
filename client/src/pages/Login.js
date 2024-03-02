@@ -15,11 +15,15 @@ const Login = () => {
       dispatch(showLoading());
       const res = await axios.post("/api/v1/user/login", values);
       dispatch(hideLoading());
-
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
-        if (res.data.user.isDoctor) {
+
+        if (res.data.user.status === "block") {
+          navigate("/userBlock");
+        } else if (res.data.user.isDoctor) {
           navigate("/homepageuser");
+        } else if (res.data.user.isAdmin) {
+          navigate("/admin/Doctors");
         } else {
           navigate("/");
         }

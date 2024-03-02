@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import NotificationPage from "./pages/NotificationPage";
 import ProfilePage from "./pages/ProfilePage";
 import Register from "./pages/Register";
+import UserBlock from "./pages/UserBlock";
 import Doctors from "./pages/admin/Doctors";
 import Users from "./pages/admin/Users";
 import DoctorAppointment from "./pages/doctor/DoctorAppointment";
@@ -137,6 +138,14 @@ function App() {
                 <ProtectedRoute>
                   <HomePageUser />
                 </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/userBlock"
+              element={
+                // <ProtectedRoute>
+                <UserBlock />
+                // </ProtectedRoute>
               }
             />
           </Routes>

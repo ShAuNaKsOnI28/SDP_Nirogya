@@ -324,6 +324,24 @@ const getUsersDataController = async (req, res) => {
   }
 };
 
+const userBlockController = async (req, res) => {
+  try {
+    const user = await userModel.find({ status: "block" });
+    res.status(200).send({
+      success: true,
+      message: "User Blocked Successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in blocking user",
+      error,
+    });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
@@ -337,4 +355,5 @@ module.exports = {
   userAppointmentsController,
   getUsersDataController,
   getAllUsersController,
+  userBlockController,
 };

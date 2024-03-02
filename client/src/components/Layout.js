@@ -193,13 +193,13 @@ const Layout = ({ children }) => {
             );
           })}
           <hr />
-          <body className="body px-30 min-h-screen min-w-screen md:bg-white dark:bg-black">
+          <body className="body px-30 min-h-full min-w-screen md:bg-white dark:bg-black">
             {children}
           </body>
         </div>
       </body>
       {/* </div> */}
-      <footer className="min-h-full overflow-clip">
+      <footer className="min-h-full pt-2 overflow-clip">
         <Footer />
       </footer>
     </>

@@ -173,15 +173,15 @@ const ApplyDoctor = () => {
           </Col>
         </Row>
       </Form> */}
-      <Form layout="vertical" onFinish={handleFinish} className="mx-3">
-        <h4 className=" text-lg  md:text-black pt-3 dark:text-white font-semibold mb-4">
+      <Form layout="vertical" onFinish={handleFinish} className="mx-4">
+        <h4 className=" text-2xl pt-3 md:text-black dark:text-white font-semibold mb-4">
           Personal Details :{" "}
         </h4>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white ">
+                <span className="text-lg font-serif md:text-black dark:text-white ">
                   First Name
                 </span>
               }
@@ -199,7 +199,9 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">Last Name</span>
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Last Name
+                </span>
               }
               name="LastName"
               required
@@ -215,7 +217,9 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">Phone No</span>
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Phone No
+                </span>
               }
               name="Phone"
               required
@@ -231,7 +235,9 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">Email</span>
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Email
+                </span>
               }
               name="Email"
               required
@@ -247,7 +253,9 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">Website</span>
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Website
+                </span>
               }
               name="Website"
             >
@@ -261,7 +269,9 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">Address</span>
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Address
+                </span>
               }
               name="Address"
               required
@@ -275,14 +285,14 @@ const ApplyDoctor = () => {
             </Form.Item>
           </Col>
         </Row>
-        <h4 className=" text-lg font-semibold mb-4 md:text-black dark:text-white">
+        <h4 className=" text-2xl font-semibold mb-4 md:text-black dark:text-white">
           Professional Details :
         </h4>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">
+                <span className="text-lg font-serif md:text-black dark:text-white">
                   Specialization
                 </span>
               }
@@ -300,7 +310,9 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">Experince</span>
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Experince
+                </span>
               }
               name="Experince"
               required
@@ -316,7 +328,7 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">
+                <span className="text-lg font-serif md:text-black dark:text-white">
                   Fees Per Consultation
                 </span>
               }
@@ -334,7 +346,9 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
-                <span className="md:text-black dark:text-white">Timings</span>
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Timings
+                </span>
               }
               name="timings"
               className="mb-0"
@@ -346,7 +360,7 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}></Col>
           <Col xs={24} md={24} lg={8}>
             <button
-              className="btn btn-primary form-btn py-2 px-4 bg-blue-500 md:text-black dark:text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+              className="btn btn-primary form-btn py-2 my-2 px-4 bg-blue-500 md:text-black dark:text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
               type="submit"
             >
               Submit
