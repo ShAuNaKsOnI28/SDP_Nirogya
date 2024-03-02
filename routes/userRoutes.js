@@ -13,6 +13,7 @@ const {
   getUsersDataController,
   getAllUsersController,
   userBlockController,
+  userPrescriptionController,
 } = require("../controllers/userCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -43,5 +44,6 @@ router.post(
 router.get("/user-appointments", authMiddleware, userAppointmentsController);
 router.get("/getUsersData", authMiddleware, getUsersDataController);
 router.post("/userBlock", authMiddleware, userBlockController);
+router.get("/user-prescription", authMiddleware, userPrescriptionController);
 
 module.exports = router;

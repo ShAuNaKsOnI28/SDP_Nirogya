@@ -1,8 +1,8 @@
+import { Button } from "antd";
 import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { Button } from "antd";
 // import "../styles/Navbar.css";
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -25,7 +25,7 @@ const Appointments = () => {
     getAppointments();
   }, []);
 
-  const pageSize = 1;
+  const pageSize = 5;
   const [currentPage, setCurrentPage] = useState(1);
 
   // const columns = [

@@ -19,6 +19,8 @@ const ApplyDoctor = () => {
         {
           ...values,
           userId: user._id,
+          // name: `${values.FirstName} ${values.LastName}`,
+          // phone: values.Phone,
 
           timings: [
             values.timings[0].format("HH:mm"),
@@ -32,13 +34,14 @@ const ApplyDoctor = () => {
           },
         }
       );
-      console.log(values.timings[0]);
-      console.log(values.timings[1]);
+      // console.log(values);
+      // console.log(values.timings[0]);
+      // console.log(values.timings[1]);
       dispatch(hideLoading());
       if (res.data.success) {
         message.success(res.data.message);
         navigate("/");
-        window.location.reload();
+        // window.location.reload();
       } else {
         message.error(res.data.message);
       }
@@ -174,7 +177,7 @@ const ApplyDoctor = () => {
         </Row>
       </Form> */}
       <Form layout="vertical" onFinish={handleFinish} className="mx-4">
-        <h4 className=" text-2xl pt-3 md:text-black dark:text-white font-semibold mb-4">
+        {/* <h4 className=" text-2xl pt-3 md:text-black dark:text-white font-semibold mb-4">
           Personal Details :{" "}
         </h4>
         <Row gutter={20}>
@@ -250,22 +253,7 @@ const ApplyDoctor = () => {
               />
             </Form.Item>
           </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label={
-                <span className="text-lg font-serif md:text-black dark:text-white">
-                  Website
-                </span>
-              }
-              name="Website"
-            >
-              <Input
-                type="text"
-                placeholder="your website"
-                className="w-full border p-2 rounded"
-              />
-            </Form.Item>
-          </Col>
+
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label={
@@ -284,7 +272,7 @@ const ApplyDoctor = () => {
               />
             </Form.Item>
           </Col>
-        </Row>
+        </Row> */}
         <h4 className=" text-2xl font-semibold mb-4 md:text-black dark:text-white">
           Professional Details :
         </h4>
@@ -321,6 +309,22 @@ const ApplyDoctor = () => {
               <Input
                 type="text"
                 placeholder="your experience"
+                className="w-full border p-2 rounded"
+              />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label={
+                <span className="text-lg font-serif md:text-black dark:text-white">
+                  Website
+                </span>
+              }
+              name="Website"
+            >
+              <Input
+                type="text"
+                placeholder="your website"
                 className="w-full border p-2 rounded"
               />
             </Form.Item>

@@ -120,7 +120,7 @@ const DoctorAppointment = () => {
       <Table
         columns={columns}
         dataSource={appointments}
-        className="md:bg-red-700 dark:bg-black p-2"
+        className="md:bg-white dark:bg-black p-2"
         bordered
         size="middle"
         pagination={{ pageSize: 5 }}

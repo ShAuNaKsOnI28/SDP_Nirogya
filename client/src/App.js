@@ -18,6 +18,8 @@ import Doctors from "./pages/admin/Doctors";
 import Users from "./pages/admin/Users";
 import DoctorAppointment from "./pages/doctor/DoctorAppointment";
 import Profile from "./pages/doctor/Profile";
+// import Prescription from "./pages/Prescription";
+// import DoctorPrescription from "./pages/doctor/DoctorPrescription";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   const { user } = useSelector((state) => state.user);
@@ -100,6 +102,7 @@ function App() {
                 </PublicRoute>
               }
             />
+
             <Route
               path="/register"
               element={
@@ -116,6 +119,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* <Route
+              path="/prescription"
+              element={
+                <ProtectedRoute>
+                  <Prescription />
+                </ProtectedRoute>
+              }
+            /> */}
             <Route
               path="/doctor-appointment"
               element={
@@ -124,6 +135,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* <Route
+              path="/doctor-prescription"
+              element={
+                <ProtectedRoute>
+                  <DoctorPrescription />
+                </ProtectedRoute>
+              }
+            /> */}
             <Route
               path="/"
               element={
@@ -143,11 +162,26 @@ function App() {
             <Route
               path="/userBlock"
               element={
-                // <ProtectedRoute>
-                <UserBlock />
-                // </ProtectedRoute>
+                <ProtectedRoute>
+                  <UserBlock />
+                </ProtectedRoute>
               }
             />
+            {/* <Route path="/apply-doctor" element={<ApplyDoctor />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/doctor/profile/:id" element={<Profile />} />
+            <Route path="/doctor/book-appointment/:doctorId" element={<BookingPage />} />
+            <Route path="/admin/Users" element={<Users />} />
+            <Route path="/admin/Doctors" element={<Doctors />} />
+            <Route path="/notification" element={<NotificationPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Hero />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/doctor-appointment" element={<DoctorAppointment />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/homepageuser" element={<HomePageUser />} />
+            <Route path="/userBlock" element={<UserBlock />} /> */}
           </Routes>
         )}
       </BrowserRouter>

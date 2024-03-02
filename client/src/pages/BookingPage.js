@@ -1,5 +1,6 @@
 import { DatePicker, message, TimePicker } from "antd";
 import axios from "axios";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -76,10 +77,35 @@ const BookingPage = () => {
     }
   };
 
+  // const handleAvailability = async () => {
+  //   try {
+  //     dispatch(showLoading());
+  //     const res = axios.post(
+  //       "/api/v1/user/booking-availability",
+  //       { doctorId: params.doctorId, date, time },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         },
+  //       }
+  //     );
+  //     dispatch(hideLoading());
+  //     if (res.data.success) {
+  //       setIsAvailable(true);
+  //       message.success(res.data.message);
+  //     } else {
+  //       message.error(res.data.message);
+  //     }
+  //   } catch (error) {
+  //     dispatch(hideLoading());
+  //     console.log(error);
+  //   }
+  // };
+
   const handleAvailability = async () => {
     try {
       dispatch(showLoading());
-      const res = axios.post(
+      const res = await axios.post(
         "/api/v1/user/booking-availability",
         { doctorId: params.doctorId, date, time },
         {
@@ -89,11 +115,24 @@ const BookingPage = () => {
         }
       );
       dispatch(hideLoading());
+
       if (res.data.success) {
-        setIsAvailable(true);
-        console.log(isAvailable);
-        message.success(res.data.message);
+        const startTime = doctors.timings[0];
+        const endTime = doctors.timings[1];
+        const selectedTime = moment(time, "HH:mm");
+        const doctorStartTime = moment(startTime, "HH:mm");
+        const doctorEndTime = moment(endTime, "HH:mm");
+        const isWithinRange =
+          selectedTime.isSameOrAfter(doctorStartTime) &&
+          selectedTime.isSameOrBefore(doctorEndTime);
+        setIsAvailable(isWithinRange);
+        if (isWithinRange) {
+          message.success(res.data.message);
+        } else {
+          message.error("Selected time is outside doctor's working hours.");
+        }
       } else {
+        setIsAvailable(false);
         message.error(res.data.message);
       }
     } catch (error) {
@@ -109,22 +148,26 @@ const BookingPage = () => {
 
   return (
     <Layout>
-      <div className="text-center">
+      <div className="text-center text-4xl m-2 font-semibold">
         <h1>Booking Page</h1>
       </div>
       <hr />
       <div className="container m-2">
         {doctors && (
           <div>
-            <h4>
-              Dr. {doctors.FirstName} {doctors.LastName}
-            </h4>
-            <h4>Fees : {doctors.FeesPerConsultation}</h4>
-            <h4>
-              Timings : {time}
-              {doctors.timings && doctors.timings[0]}-{" "}
-              {doctors.timings && doctors.timings[1]}{" "}
-            </h4>
+            <div className="text-lg ml-3 my-2 pt-2 font-medium md:text-black dark:text-white">
+              <h4>
+                Dr. {doctors.FirstName} {doctors.LastName}
+              </h4>
+              <h4>Fees : {doctors.FeesPerConsultation}</h4>
+              <h4>Specialization : {doctors.Specialization}</h4>
+              <h4>Experience : {doctors.Experince}</h4>              
+              <h4>Doctor Contact : {doctors.Phone}</h4>              
+              <h4>
+                Timings :{doctors.timings && doctors.timings[0]}-{" "}
+                {doctors.timings && doctors.timings[1]}{" "}
+              </h4>
+            </div>
             <div className="d-flex flex-column w-50">
               <DatePicker
                 className="m-2"
@@ -140,15 +183,20 @@ const BookingPage = () => {
                   setTime(value.format("HH:mm"));
                 }}
               />
-              <button
-                className="btn btn-primary mt-2"
-                onClick={handleAvailability}
-              >
-                Check Availability
-              </button>
-              <button className="btn btn-dark mt-2" onClick={handleBooking}>
-                Book Now
-              </button>
+              <div className="flex">
+                <button
+                  className="btn btn-primary mt-2 p-2 mx-2 w-full"
+                  onClick={handleAvailability}
+                >
+                  Check Availability
+                </button>
+                <button
+                  className="btn mt-2 p-2 mx-2 w-full md:bg-black dark:bg-white md:text-white dark:text-black"
+                  onClick={handleBooking}
+                >
+                  Book Now
+                </button>
+              </div>
             </div>
           </div>
         )}

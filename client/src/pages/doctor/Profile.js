@@ -88,7 +88,7 @@ const Profile = () => {
           //   ],
           // }}
         >
-          <h4 className=" text-2xl pt-3 md:text-black dark:text-white font-semibold mb-4">
+          {/* <h4 className=" text-2xl pt-3 md:text-black dark:text-white font-semibold mb-4">
             Personal Details :{" "}
           </h4>
           <Row gutter={20}>
@@ -198,7 +198,7 @@ const Profile = () => {
                 />
               </Form.Item>
             </Col>
-          </Row>
+          </Row> */}
           <h4 className=" text-2xl font-semibold mb-4 md:text-black dark:text-white">
             Professional Details :
           </h4>

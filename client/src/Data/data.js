@@ -22,15 +22,20 @@ export const userMenu = [
     icon: "fa-solid fa-user-doctor",
   },
   {
-    name: "User Profile",
-    path: "/profile",
-    icon: "fa-solid fa-user",
+    name: "Doctor Prescription",
+    path: "/prescription",
+    icon: "fa-solid fa-prescription-bottle-medical",
   },
-  {
-    name: "User Notification",
-    path: "/notification",
-    icon: "fa-solid fa-bell",
-  },
+  // {
+  //   name: "User Profile",
+  //   path: "/profile",
+  //   icon: "fa-solid fa-user",
+  // },
+  // {
+  //   name: "User Notification",
+  //   path: "/notification",
+  //   icon: "fa-solid fa-bell",
+  // },
 ];
 
 // admin menu
@@ -51,16 +56,16 @@ export const adminMenu = [
     path: "/admin/Users",
     icon: "fa-solid fa-user",
   },
-  {
-    name: "Admin Profile",
-    path: "/profile",
-    icon: "fa-solid fa-user",
-  },
-  {
-    name: "Admin Notification",
-    path: "/notification",
-    icon: "fa-solid fa-bell",
-  },
+  // {
+  //   name: "Admin Profile",
+  //   path: "/profile",
+  //   icon: "fa-solid fa-user",
+  // },
+  // {
+  //   name: "Admin Notification",
+  //   path: "/notification",
+  //   icon: "fa-solid fa-bell",
+  // },
 ];
 
 export const doctorMenu = [
@@ -80,8 +85,13 @@ export const doctorMenu = [
     icon: "fa-solid fa-user",
   },
   {
-    name: "Doctor Notification",
-    path: "/notification",
-    icon: "fa-solid fa-bell",
+    name: "Patient Prescription",
+    path: "/doctor-prescription",
+    icon: "fa-solid fa-prescription-bottle-medical",
   },
+  // {
+  //   name: "Doctor Notification",
+  //   path: "/notification",
+  //   icon: "fa-solid fa-bell",
+  // },
 ];

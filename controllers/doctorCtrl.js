@@ -1,6 +1,7 @@
 const doctorModel = require("../models/doctorModels");
 const appointmentModel = require("../models/appointmentModels");
 const userModel = require("../models/userModels");
+const prescriptionModel = require("../models/prescriptionModel");
 const getDoctorInfoController = async (req, res) => {
   try {
     const doctor = await doctorModel.findOne({ userId: req.body.userId });
@@ -76,6 +77,25 @@ const doctorAppointmentController = async (req, res) => {
   }
 };
 
+const doctorPrescriptionController = async (req, res) => {
+  try {
+    const doctor = await doctorModel.findOne({ userId: req.body.userId });
+    const prescription = await prescriptionModel.find({ doctorId: doctor._id });
+    res.status(200).send({
+      success: true,
+      message: "Fetching prescription from doctor side success",
+      data: prescription,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting prescription from doctor side",
+      error,
+    });
+  }
+};
+
 const updateStatusController = async (req, res) => {
   try {
     const { appointmentsId, status } = req.body;
@@ -107,10 +127,32 @@ const updateStatusController = async (req, res) => {
   }
 };
 
+const updateDoctorPrescriptionController = async (req, res) => {
+  try {
+    console.log(req.body.prescriptionId);
+    // const prescription = await prescriptionModel.findByIdAndUpdate(req.body);
+    res.status(200).send({
+      success: true,
+      message: "Prescription given",
+      // data: prescription,
+      data:{fname:"shannak"}
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while giving prescription",
+      error,
+    });
+  }
+};
+
 module.exports = {
   getDoctorInfoController,
   updateProfileController,
   getDoctorByIdController,
   doctorAppointmentController,
   updateStatusController,
+  doctorPrescriptionController,
+  updateDoctorPrescriptionController,
 };

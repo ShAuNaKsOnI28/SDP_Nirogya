@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const doctorModel = require("../models/doctorModels");
 const appointmentModel = require("../models/appointmentModels");
+const prescriptionModel = require("../models/prescriptionModel");
 const moment = require("moment");
 
 //register callback
@@ -87,9 +88,16 @@ const authController = async (req, res) => {
 //applydoctor ctrl
 const applyDoctorController = async (req, res) => {
   try {
-    const newDoctor = await doctorModel({ ...req.body, status: "pending" });
-    await newDoctor.save();
     const user = await userModel.findOne({ _id: req.body.userId });
+    const newDoctor = await doctorModel({ ...req.body, status: "pending" });
+    newDoctor.FirstName = user.fname;
+    newDoctor.LastName = user.lname;
+    newDoctor.Phone = user.phone;
+    newDoctor.Email = user.email;
+    newDoctor.Address = user.address;
+    newDoctor.problem = "None";
+    console.log("NewDoctor: ", newDoctor);
+    await newDoctor.save();
     // console.log(user);
     user.isDoctor = true;
     // console.log(user);
@@ -299,6 +307,47 @@ const userAppointmentsController = async (req, res) => {
   }
 };
 
+const userPrescriptionController = async (req, res) => {
+  try {
+    req.body.status = "pending";
+    const prescriptions = new prescriptionModel(req.body);
+    await prescriptions.save();
+    const user = await userModel.findOne({ _id: req.body.userId });
+    user.notification.push({
+      type: "new-prescription",
+      message: `A new prescription from`,
+      onclickPath: "/user/prescription",
+    });
+    await user.save();
+    res.status(200).send({
+      success: true,
+      message: "Prescription added successfully",
+      data: prescriptions,
+    });
+
+    // if (prescriptions.length === 0) {
+    //   res.status(200).send({
+    //     success: true,
+    //     message: "No prescription found",
+    //     data: prescriptions,
+    //   });
+    // } else {
+    //   res.status(200).send({
+    //     success: true,
+    //     message: "Prescription found",
+    //     data: prescriptions,
+    //   });
+    // }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in fetching user prescription data",
+      error,
+    });
+  }
+};
+
 const getUsersDataController = async (req, res) => {
   try {
     const user = await userModel.findById({ _id: req.body.userId });
@@ -356,4 +405,5 @@ module.exports = {
   getUsersDataController,
   getAllUsersController,
   userBlockController,
+  userPrescriptionController,
 };

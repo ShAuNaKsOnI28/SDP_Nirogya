@@ -1,4 +1,4 @@
-import { Button, message } from "antd";
+import { Badge, Button, message } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -250,7 +250,7 @@ const Navbar = () => {
     //     </div>
     //   </div>
     // </header>
-    <header class="text-gray-600 z-50 body-font pt-2 sticky md:bg-white top-0 md:shadow-lg dark:bg-black">
+    <header class=" text-gray-600 z-50 body-font pt-2 sticky md:bg-white top-0 md:shadow-lg dark:bg-black">
       <div class="container mx-auto flex px-5 flex-col md:flex-row justify-between items-center">
         {/* <div>
             <Link
@@ -330,7 +330,10 @@ const Navbar = () => {
             )} 
           </div> */}
 
-        <a className=" -ml-8 flex title-font font-medium  md:mb-0 cursor-pointer">
+        <a
+          href="/home"
+          className=" -ml-8 flex title-font font-medium  md:mb-0 cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -385,9 +388,23 @@ const Navbar = () => {
           {user ? (
             <>
               <div className=" -mr-8 flex items-center p-2 md:p-0 mb-2 mt-2/3 md:order-2 border border-gray-100 bg-gray-50 md:text-black md:bg-white space-x-3 dark:bg-gray-800 dark:border-gray-700 rounded-lg md:space-x-0 ltr:space-x-reverse">
+                <Badge
+                  count={user && user.notification.length}
+                  onClick={() => {
+                    navigate("/notification");
+                  }}
+                  className="mx-2 h-2 w-6"
+                >
+                  <i
+                    className="fa-solid fa-bell"
+                    style={{ fontSize: "18px" }}
+                  ></i>
+                </Badge>
                 <div className=" p-1/2 mr-1">
                   <span className="block pr-2 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    <span className="mx-2">{user?.name}</span>
+                    <span className="mx-2">
+                      {user?.fname} {user?.lname}
+                    </span>
                     <br />
                     <span className="mx-2">{user?.email}</span>
                   </span>

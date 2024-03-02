@@ -1,5 +1,4 @@
 // ProfilePage.js
-import { Card } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
@@ -82,23 +81,47 @@ const ProfilePage = () => {
             />
             <div className="min-w-0 flex-auto">
               <p className="text-sm font-semibold leading-6 md:text-gray-900 dark:text-white">
-                {user.name}
+                {user.salutation}
+                {user.fname} {user.lname}
               </p>
               <p className="mt-1 truncate text-xs leading-5 md:text-gray-500 dark:text-white">
                 {user.email}
               </p>
+              {user.isDoctor ? (
+                <></>
+              ) : (
+                <p className="mt-1 truncate text-xs leading-5 md:text-gray-500 dark:text-white">
+                  Blood Group: {user.bloodgroup}
+                </p>
+              )}
+              <p className="mt-1 truncate text-xs leading-5 md:text-gray-500 dark:text-white">
+                Gender: {user.gender}
+              </p>
+              <p className="mt-1 truncate text-xs leading-5 md:text-gray-500 dark:text-white">
+                Address: {user.address}
+              </p>
+              <p className="mt-1 truncate text-xs leading-5 md:text-gray-500 dark:text-white">
+                Phone: {user.phone}
+              </p>
+              {user.isDoctor ? (
+                <></>
+              ) : (
+                <p className="mt-1 truncate text-xs leading-5 md:text-gray-500 dark:text-white">
+                  problem: {user.problem}
+                </p>
+              )}
             </div>
           </div>
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p className="text-sm leading-6 md:text-gray-900 dark:text-white">
               {user.isAdmin ? "Admin" : user.isDoctor ? "Doctor" : "Patient"}
             </p>
-              <div className="mt-1 flex items-center gap-x-1.5">
-                <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                </div>
-                <p className="text-xs leading-5 text-gray-500">Online</p>
+            <div className="mt-1 flex items-center gap-x-1.5">
+              <div className="flex-none rounded-full bg-emerald-500/20 p-1">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               </div>
+              <p className="text-xs leading-5 text-gray-500">Online</p>
+            </div>
           </div>
         </li>
       </ul>
