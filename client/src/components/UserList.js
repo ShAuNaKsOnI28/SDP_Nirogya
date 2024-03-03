@@ -1,13 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserList = ({ user }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <>
       <div
         className="card m-2 user-card rounded-none flex-1"
-        // style={{ cursor: "pointer" }}
-        // onClick={() => navigate(`/doctor/abook-appointment/${user._id}`)}
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate(`/user/give-prescription/${user._id}`)}
       >
         <div className="card-header md:bg-gray-100 dark:bg-gray-800 md:text-black dark:text-white">
           {user.salutation} {user.name}
