@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  fname: {
     type: String,
-    required: [true, "name is require"],
+    required: [true, "first name is require"],
+  },
+  lname: {
+    type: String,
+    required: [true, "last name is required"],
   },
   email: {
     type: String,
@@ -20,6 +24,25 @@ const userSchema = new mongoose.Schema({
   gender: {
     type: String,
     enum: ["male", "female", "other"],
+  },
+  bloodgroup: {
+    type: String,
+    enum: ["A+", "B+", "O+", "A-", "B-", "O-", "AB+", "AB-"],
+  },
+  problem: {
+    type: String,
+    required: [true, "Name of illness is required"],
+  },
+  phone: {
+    type: String,
+    required: [true, "Phone number is required"],
+  },
+  address: {
+    type: String,
+    required: [true, "Address is required"],
+  },
+  imageUrl: {
+    type: String,
   },
   isAdmin: {
     type: Boolean,

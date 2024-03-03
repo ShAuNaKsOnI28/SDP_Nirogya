@@ -11,15 +11,16 @@ import HomePage from "./pages/HomePage";
 import HomePageUser from "./pages/HomePageUser";
 import Login from "./pages/Login";
 import NotificationPage from "./pages/NotificationPage";
+import Prescription from "./pages/Prescription";
 import ProfilePage from "./pages/ProfilePage";
 import Register from "./pages/Register";
 import UserBlock from "./pages/UserBlock";
 import Doctors from "./pages/admin/Doctors";
 import Users from "./pages/admin/Users";
 import DoctorAppointment from "./pages/doctor/DoctorAppointment";
+import DoctorPrescription from "./pages/doctor/DoctorPrescription";
+import GivePrescription from "./pages/doctor/GivePrescription";
 import Profile from "./pages/doctor/Profile";
-// import Prescription from "./pages/Prescription";
-// import DoctorPrescription from "./pages/doctor/DoctorPrescription";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   const { user } = useSelector((state) => state.user);
@@ -59,6 +60,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <BookingPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/user/give-prescription/:userId"
+              element={
+                <ProtectedRoute>
+                  <GivePrescription />
                 </ProtectedRoute>
               }
             />
@@ -119,14 +128,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
+            <Route
               path="/prescription"
               element={
                 <ProtectedRoute>
                   <Prescription />
                 </ProtectedRoute>
               }
-            /> */}
+            />
             <Route
               path="/doctor-appointment"
               element={
@@ -135,14 +144,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
+            <Route
               path="/doctor-prescription"
               element={
                 <ProtectedRoute>
                   <DoctorPrescription />
                 </ProtectedRoute>
               }
-            /> */}
+            />
             <Route
               path="/"
               element={

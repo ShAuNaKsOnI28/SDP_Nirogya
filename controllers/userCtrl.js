@@ -220,7 +220,8 @@ const bookAppointmentController = async (req, res) => {
     req.body.status = "pending";
     const newAppointment = new appointmentModel(req.body);
     await newAppointment.save();
-    const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
+    console.log(req.body);
+    const user = await userModel.findOne({ _id: req.body.userId });
     user.notification.push({
       type: "new-appointment-request",
       message: `A new appointment request from ${req.body.userInfo.name}`,
@@ -236,6 +237,25 @@ const bookAppointmentController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "appointment not booked",
+      error,
+    });
+  }
+};
+
+const getUserByIdController = async (req, res) => {
+  try {
+    // console.log(req.body);
+    const user = await userModel.findOne({ _id: req.body._id });
+    res.status(200).send({
+      success: true,
+      message: "User found by id",
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in fetching user by id",
       error,
     });
   }
@@ -310,8 +330,8 @@ const userAppointmentsController = async (req, res) => {
 const userPrescriptionController = async (req, res) => {
   try {
     req.body.status = "pending";
-    const prescriptions = new prescriptionModel(req.body);
-    await prescriptions.save();
+    const prescriptions = await prescriptionModel.find({
+    });
     const user = await userModel.findOne({ _id: req.body.userId });
     user.notification.push({
       type: "new-prescription",
@@ -319,25 +339,25 @@ const userPrescriptionController = async (req, res) => {
       onclickPath: "/user/prescription",
     });
     await user.save();
-    res.status(200).send({
-      success: true,
-      message: "Prescription added successfully",
-      data: prescriptions,
-    });
+    // res.status(200).send({
+    //   success: true,
+    //   message: "Prescription added successfully",
+    //   data: prescriptions,
+    // });
 
-    // if (prescriptions.length === 0) {
-    //   res.status(200).send({
-    //     success: true,
-    //     message: "No prescription found",
-    //     data: prescriptions,
-    //   });
-    // } else {
-    //   res.status(200).send({
-    //     success: true,
-    //     message: "Prescription found",
-    //     data: prescriptions,
-    //   });
-    // }
+    if (prescriptions.length === 0) {
+      res.status(200).send({
+        success: true,
+        message: "No prescription found",
+        data: prescriptions,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        message: "Prescription found",
+        data: prescriptions,
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -406,4 +426,5 @@ module.exports = {
   getAllUsersController,
   userBlockController,
   userPrescriptionController,
+  getUserByIdController,
 };
