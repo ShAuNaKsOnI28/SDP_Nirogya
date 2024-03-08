@@ -330,8 +330,7 @@ const userAppointmentsController = async (req, res) => {
 const userPrescriptionController = async (req, res) => {
   try {
     req.body.status = "pending";
-    const prescriptions = await prescriptionModel.find({
-    });
+    const prescriptions = await prescriptionModel.find({});
     const user = await userModel.findOne({ _id: req.body.userId });
     user.notification.push({
       type: "new-prescription",
@@ -344,7 +343,6 @@ const userPrescriptionController = async (req, res) => {
     //   message: "Prescription added successfully",
     //   data: prescriptions,
     // });
-
     if (prescriptions.length === 0) {
       res.status(200).send({
         success: true,

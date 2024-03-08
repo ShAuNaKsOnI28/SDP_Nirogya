@@ -297,7 +297,7 @@ const Landing = () => {
           </div>
         </div>
         <div className="flex-1 basis-1/2">
-          <img src="./images/landing.png" />
+          <img src="./images/landing1.png" />
         </div>
       </div>
     </>

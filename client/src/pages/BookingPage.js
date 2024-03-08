@@ -77,31 +77,6 @@ const BookingPage = () => {
     }
   };
 
-  // const handleAvailability = async () => {
-  //   try {
-  //     dispatch(showLoading());
-  //     const res = axios.post(
-  //       "/api/v1/user/booking-availability",
-  //       { doctorId: params.doctorId, date, time },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //         },
-  //       }
-  //     );
-  //     dispatch(hideLoading());
-  //     if (res.data.success) {
-  //       setIsAvailable(true);
-  //       message.success(res.data.message);
-  //     } else {
-  //       message.error(res.data.message);
-  //     }
-  //   } catch (error) {
-  //     dispatch(hideLoading());
-  //     console.log(error);
-  //   }
-  // };
-
   const handleAvailability = async () => {
     try {
       dispatch(showLoading());
@@ -155,19 +130,48 @@ const BookingPage = () => {
       <div className="container m-2">
         {doctors && (
           <div>
-            <div className="text-lg ml-3 my-2 pt-2 font-medium md:text-black dark:text-white">
+            {/* <div className="text-lg ml-3 my-2 pt-2 font-medium md:text-black dark:text-white">
               <h4>
                 Dr. {doctors.FirstName} {doctors.LastName}
               </h4>
               <h4>Fees : {doctors.FeesPerConsultation}</h4>
               <h4>Specialization : {doctors.Specialization}</h4>
-              <h4>Experience : {doctors.Experince}</h4>              
-              <h4>Doctor Contact : {doctors.Phone}</h4>              
+              <h4>Experience : {doctors.Experince}</h4>
+              <h4>Doctor Contact : {doctors.Phone}</h4>
               <h4>
                 Timings :{doctors.timings && doctors.timings[0]}-{" "}
                 {doctors.timings && doctors.timings[1]}{" "}
               </h4>
+            </div> */}
+            <div className="text-lg ml-3 my-2 pt-2 font-medium bg-gray-100 p-4 rounded-md md:text-black dark:text-white">
+              <h4 className="text-xl font-bold mb-2">
+                Dr. {doctors.FirstName} {doctors.LastName}
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <span className="text-gray-600">Fees:</span>{" "}
+                  {doctors.FeesPerConsultation}
+                </div>
+                <div>
+                  <span className="text-gray-600">Specialization:</span>{" "}
+                  {doctors.Specialization}
+                </div>
+                <div>
+                  <span className="text-gray-600">Experience:</span>{" "}
+                  {doctors.Experince}
+                </div>
+                <div>
+                  <span className="text-gray-600">Doctor Contact:</span>{" "}
+                  {doctors.Phone}
+                </div>
+                <div>
+                  <span className="text-gray-600">Timings:</span>{" "}
+                  {doctors.timings && doctors.timings[0]}-{" "}
+                  {doctors.timings && doctors.timings[1]}
+                </div>
+              </div>
             </div>
+
             <div className="d-flex flex-column w-50">
               <DatePicker
                 className="m-2"

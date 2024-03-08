@@ -12,7 +12,6 @@ const Prescription = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log("res", res.data.data);
       if (res.data.success) {
         setPrescription(res.data.data);
       }
@@ -37,42 +36,42 @@ const Prescription = () => {
       //   </span>
       // ),
     },
-    // {
-    //   title: "Date",
-    //   dataIndex: "date",
-    // },
+    {
+      title: "Date",
+      dataIndex: "date",
+    },
     {
       title: "Medicine Name",
       dataIndex: "Mname",
     },
-    // {
-    //   title: "Morning Doseage",
-    //   dataIndex: "morning",
-    // },
-    // {
-    //   title: "Afternoon Doseage",
-    //   dataIndex: "afternoon",
-    // },
-    // {
-    //   title: "Evening Doseage",
-    //   dataIndex: "evening",
-    // },
-    // {
-    //   title: "Night Doseage",
-    //   dataIndex: "night",
-    // },
-    // {
-    //   title: "Date of appointment",
-    //   dataIndex: "date",
-    // },
-    // {
-    //   title: "Doseage",
-    //   dataIndex: "quantity",
-    // },
-    // {
-    //   title: "Number of days",
-    //   dataIndex: "noofdays",
-    // },
+    {
+      title: "Morning Doseage",
+      dataIndex: "morning",
+    },
+    {
+      title: "Afternoon Doseage",
+      dataIndex: "afternoon",
+    },
+    {
+      title: "Evening Doseage",
+      dataIndex: "evening",
+    },
+    {
+      title: "Night Doseage",
+      dataIndex: "night",
+    },
+    {
+      title: "Date of appointment",
+      dataIndex: "date",
+    },
+    {
+      title: "Doseage",
+      dataIndex: "quantity",
+    },
+    {
+      title: "Number of days",
+      dataIndex: "noofdays",
+    },
     {
       title: "Problem diagnosed",
       dataIndex: "problem",
@@ -93,7 +92,7 @@ const Prescription = () => {
 
   return (
     <Layout>
-      <div>
+      {/* <div>
         <table border="1">
           <thead>
             <tr>
@@ -133,15 +132,15 @@ const Prescription = () => {
             Next Page
           </Button>
         </div>
-      </div>
-      {/* <div className=" overflow-x-auto">
+      </div> */}
+      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
         <table className=" min-w-full border border-gray-300">
           <thead>
             <tr>
               {columns.map((column, columnIndex) => (
                 <th
                   key={columnIndex}
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-sm font-semibold md:text-black dark:text-black uppercase tracking-wider"
                 >
                   {column.title}
                 </th>
@@ -163,26 +162,26 @@ const Prescription = () => {
           </tbody>
         </table>
       </div>
-      <div className="px-10 pt-10 space-x-2">
+      <div className=" space-x-56 px-10 pt-10 mx-2 ">
         <Button
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
+          className="bg-white"
         >
           Previous Page
         </Button>
-        <span> Page {currentPage} </span>
+        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+          {" "}
+          Page {currentPage}{" "}
+        </span>
         <Button
+          className="bg-white"
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={endIndex >= prescription.length}
         >
           Next Page
         </Button>
       </div>
-      {/* <Table
-        columns={columns}
-        dataSource={prescription}
-        pagination={{ pageSize: 5 }}
-      /> */}
     </Layout>
   );
 };

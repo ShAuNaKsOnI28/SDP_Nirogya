@@ -98,12 +98,15 @@ const Appointments = () => {
         className="md:bg-red-800 dark:bg-black p-2"
         pagination={{ pageSize: 5 }}
       /> */}
-      <div>
-        <table border="1">
+      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
+        <table className=" min-w-full border border-gray-300">
           <thead>
             <tr>
-              {columns.map((column) => (
-                <th className=" px-5 py-3 w-screen" key={column.title}>
+              {columns.map((column, columnIndex) => (
+                <th
+                  key={columnIndex}
+                  className="px-6 py-3 text-left text-sm font-semibold md:text-black dark:text-black uppercase tracking-wider"
+                >
                   {column.title}
                 </th>
               ))}
@@ -113,7 +116,7 @@ const Appointments = () => {
             {currentAppointments.map((record, index) => (
               <tr key={index}>
                 {columns.map((column, columnIndex) => (
-                  <td key={columnIndex}>
+                  <td key={columnIndex} className="px-6 py-4 whitespace-nowrap">
                     {column.render
                       ? column.render(record)
                       : record[column.dataIndex]}
@@ -123,21 +126,26 @@ const Appointments = () => {
             ))}
           </tbody>
         </table>
-        <div className="px-10 pt-10 ">
-          <Button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Previous Page
-          </Button>
-          <span> Page {currentPage} </span>
-          <Button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={endIndex >= appointments.length}
-          >
-            Next Page
-          </Button>
-        </div>
+      </div>
+      <div className=" space-x-56 px-10 pt-10 mx-2 ">
+        <Button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="bg-white"
+        >
+          Previous Page
+        </Button>
+        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+          {" "}
+          Page {currentPage}{" "}
+        </span>
+        <Button
+          className="bg-white"
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={endIndex >= appointments.length}
+        >
+          Next Page
+        </Button>
       </div>
     </Layout>
   );

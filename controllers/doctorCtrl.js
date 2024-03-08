@@ -79,8 +79,12 @@ const doctorAppointmentController = async (req, res) => {
 
 const doctorPrescriptionController = async (req, res) => {
   try {
-    const doctor = await doctorModel.findOne({ userId: req.body.userId });
-    const prescription = await prescriptionModel.find({ doctorId: doctor._id });
+    console.log(req.body);
+    const prescription = await prescriptionModel.find({});
+    // const user = await userModel.findOne({ _id: req.body.userId });
+    // const doctor = await doctorModel.findOne({
+    //   userId: req.body.userId,
+    // });
     res.status(200).send({
       success: true,
       message: "Fetching prescription from doctor side success",

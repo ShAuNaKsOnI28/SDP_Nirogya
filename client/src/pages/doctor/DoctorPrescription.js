@@ -1,16 +1,10 @@
-import { Button, Form, Input, message } from "antd";
+import { Button } from "antd";
 import axios from "axios";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout";
 
 const DoctorPrescription = () => {
-  const [form] = Form.useForm();
-  const params = useParams();
-  const { user } = useSelector((state) => state.user);
-  const [prescriptions, setPrescriptions] = useState([]);
+  const [prescription, setPrescription] = useState([]);
 
   const getPrescriptions = async () => {
     try {
@@ -20,35 +14,10 @@ const DoctorPrescription = () => {
         },
       });
       if (res.data.success) {
-        setPrescriptions(res.data.data);
+        setPrescription(res.data.data);
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const onFinish = async (values) => {
-    try {
-      const res = await axios.post(
-        "/api/v1/doctor/update-prescription",
-        {
-          ...values,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-
-      if (res.data.success) {
-        message.success(res.data.message);
-        getPrescriptions();
-        form.resetFields();
-      }
-    } catch (error) {
-      console.log(error);
-      message.error("Something went wrong");
     }
   };
 
@@ -56,37 +25,119 @@ const DoctorPrescription = () => {
     getPrescriptions();
   }, []);
 
+  const pageSize = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const columns = [
+    {
+      title: "Doctor Name",
+      dataIndex: "fname",
+      // render: (text, record) => <span>{record.fname}</span>,
+    },
+    {
+      title: "Date",
+      dataIndex: "date",
+    },
+    {
+      title: "Medicine Name",
+      dataIndex: "Mname",
+    },
+    {
+      title: "Morning Doseage",
+      dataIndex: "morning",
+    },
+    {
+      title: "Afternoon Doseage",
+      dataIndex: "afternoon",
+    },
+    {
+      title: "Evening Doseage",
+      dataIndex: "evening",
+    },
+    {
+      title: "Night Doseage",
+      dataIndex: "night",
+    },
+    {
+      title: "Date of appointment",
+      dataIndex: "date",
+    },
+    {
+      title: "Doseage",
+      dataIndex: "quantity",
+    },
+    {
+      title: "Number of days",
+      dataIndex: "noofdays",
+    },
+    {
+      title: "Problem diagnosed",
+      dataIndex: "problem",
+    },
+    {
+      title: "treatment",
+      dataIndex: "diagnosis",
+    },
+    {
+      title: "status",
+      dataIndex: "status",
+    },
+  ];
+
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentPrescription = prescription.slice(startIndex, endIndex);
   return (
     <Layout>
-      {/* <div>
-        <Form form={form} onFinish={onFinish} layout="vertical">
-          {/* Add necessary form fields 
-          <Form.Item
-            name="fname"
-            label="First Name"
-            rules={[{ required: true, message: "Please enter first name" }]}
-          >
-            <Input />
-          </Form.Item>
-          {/* Add more form items based on prescription model fields 
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Give Prescription
-            </Button>
-          </Form.Item>
-        </Form>
+      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
+        <table className=" min-w-full border border-gray-300">
+          <thead>
+            <tr>
+              {columns.map((column, columnIndex) => (
+                <th
+                  key={columnIndex}
+                  className="px-6 py-3 text-left text-sm font-semibold md:text-black dark:text-black uppercase tracking-wider"
+                >
+                  {column.title}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {currentPrescription.map((record, index) => (
+              <tr key={index}>
+                {columns.map((column, columnIndex) => (
+                  <td key={columnIndex} className="px-6 py-4 whitespace-nowrap">
+                    {column.render
+                      ? column.render(record)
+                      : record[column.dataIndex]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-
-      {/* Display existing prescriptions 
-      {prescriptions.map((prescription) => (
-        <div key={prescription._id}>
-          {/* Display prescription details 
-          <p>{`Medicine: ${prescription.Mname}, Date: ${moment(
-            prescription.date
-          ).format("DD/MM/YYYY")}`}</p>
-        </div>
-      ))} */}
-      Prescripiton given by doctor
+      <div className=" space-x-56 px-10 pt-10 mx-2 ">
+        <Button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="bg-white"
+        >
+          Previous Page
+        </Button>
+        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+          {" "}
+          Page {currentPage}{" "}
+        </span>
+        <Button
+          className="bg-white"
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={endIndex >= prescription.length}
+        >
+          Next Page
+        </Button>
+      </div>
     </Layout>
   );
 };
