@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Table } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
@@ -29,12 +29,12 @@ const Prescription = () => {
   const columns = [
     {
       title: "Doctor Name",
-      dataIndex: "fname",
-      // render: (record) => (
-      //   <span>
-      //     {record.FirstName} {record.LastName}
-      //   </span>
-      // ),
+      // dataIndex: "fname",
+      render: (record) => (
+        <span>
+          {record.fname} {record.lname}
+        </span>
+      ),
     },
     {
       title: "Date",
@@ -46,19 +46,23 @@ const Prescription = () => {
     },
     {
       title: "Morning Doseage",
-      dataIndex: "morning",
+      // dataIndex: "morning",
+      render: (record, text) => <span>{record.morning ? "yes" : "no"}</span>,
     },
     {
       title: "Afternoon Doseage",
-      dataIndex: "afternoon",
+      // dataIndex: "afternoon",
+      render: (record, text) => <span>{record.afternoon ? "yes" : "no"}</span>,
     },
     {
       title: "Evening Doseage",
-      dataIndex: "evening",
+      // dataIndex: "evening",
+      render: (record, text) => <span>{record.evening ? "yes" : "no"}</span>,
     },
     {
       title: "Night Doseage",
-      dataIndex: "night",
+      // dataIndex: "night",
+      render: (record, text) => <span>{record.night ? "yes" : "no"}</span>,
     },
     {
       title: "Date of appointment",
@@ -92,48 +96,7 @@ const Prescription = () => {
 
   return (
     <Layout>
-      {/* <div>
-        <table border="1">
-          <thead>
-            <tr>
-              {columns.map((column) => (
-                <th className=" px-5 py-3 w-screen" key={column.title}>
-                  {column.title}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {currentPrescription.map((record, index) => (
-              <tr key={index}>
-                {columns.map((column, columnIndex) => (
-                  <td key={columnIndex}>
-                    {column.render
-                      ? column.render(record)
-                      : record[column.dataIndex]}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="px-10 pt-10 ">
-          <Button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Previous Page
-          </Button>
-          <span> Page {currentPage} </span>
-          <Button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={endIndex >= prescription.length}
-          >
-            Next Page
-          </Button>
-        </div>
-      </div> */}
-      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
+      {/* <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-white dark:text-black md:text-black">
         <table className=" min-w-full border border-gray-300">
           <thead>
             <tr>
@@ -170,7 +133,7 @@ const Prescription = () => {
         >
           Previous Page
         </Button>
-        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+        <span className="dark:bg-white md:bg-white dark:text-black md:text-black rounded-md p-1">
           {" "}
           Page {currentPage}{" "}
         </span>
@@ -181,7 +144,14 @@ const Prescription = () => {
         >
           Next Page
         </Button>
-      </div>
+      </div> */}
+      <Table
+        columns={columns}
+        dataSource={prescription}
+        bordered
+        size="middle"
+        className="mx-5 mt-10"
+      />
     </Layout>
   );
 };

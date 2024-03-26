@@ -28,7 +28,9 @@ const HomePageUser = () => {
   return (
     <Layout>
       <div className="homepage-container">
-        <Row className="doctor-list-container flex-wrap justify-center">
+        <Row
+          className="doctor-list-container flex-wrap justify-center"
+        >
           {users &&
             users.map((user) => <UserList key={user._id} user={user} />)}
         </Row>

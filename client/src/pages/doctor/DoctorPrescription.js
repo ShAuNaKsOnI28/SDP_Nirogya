@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Table } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
@@ -31,8 +31,17 @@ const DoctorPrescription = () => {
   const columns = [
     {
       title: "Doctor Name",
-      dataIndex: "fname",
+      // dataIndex: "fname",
       // render: (text, record) => <span>{record.fname}</span>,
+      render: (record, text) => (
+        <span>
+          {record.fname && record.lname
+            ? record.fname + " " + record.lname
+            : "no name"}
+          {/* {record.fname}
+          {record.lname} */}
+        </span>
+      ),
     },
     {
       title: "Date",
@@ -44,19 +53,23 @@ const DoctorPrescription = () => {
     },
     {
       title: "Morning Doseage",
-      dataIndex: "morning",
+      // dataIndex: "morning",
+      render: (record, text) => <span>{record.morning ? "yes" : "no"}</span>,
     },
     {
       title: "Afternoon Doseage",
-      dataIndex: "afternoon",
+      // dataIndex: "afternoon",
+      render: (record, text) => <span>{record.afternoon ? "yes" : "no"}</span>,
     },
     {
       title: "Evening Doseage",
-      dataIndex: "evening",
+      // dataIndex: "evening",
+      render: (record, text) => <span>{record.evening ? "yes" : "no"}</span>,
     },
     {
       title: "Night Doseage",
-      dataIndex: "night",
+      // dataIndex: "night",
+      render: (record, text) => <span>{record.night ? "yes" : "no"}</span>,
     },
     {
       title: "Date of appointment",
@@ -89,7 +102,7 @@ const DoctorPrescription = () => {
   const currentPrescription = prescription.slice(startIndex, endIndex);
   return (
     <Layout>
-      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
+      {/* <div className=" rounded-md overflow-x-auto ml-32 max-w-screen-md dark:bg-white md:bg-white dark:text-black md:text-black">
         <table className=" min-w-full border border-gray-300">
           <thead>
             <tr>
@@ -126,7 +139,7 @@ const DoctorPrescription = () => {
         >
           Previous Page
         </Button>
-        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+        <span className="dark:bg-white md:bg-white dark:text-black md:text-black rounded-md p-1">
           {" "}
           Page {currentPage}{" "}
         </span>
@@ -137,7 +150,14 @@ const DoctorPrescription = () => {
         >
           Next Page
         </Button>
-      </div>
+      </div> */}
+      <Table
+        columns={columns}
+        dataSource={prescription}
+        bordered
+        size="middle"
+        className="mx-5 mt-10 overflow-x-auto"
+      />
     </Layout>
   );
 };
