@@ -61,6 +61,7 @@ const getDoctorByIdController = async (req, res) => {
 const doctorAppointmentController = async (req, res) => {
   try {
     const doctor = await doctorModel.findOne({ userId: req.body.userId });
+    console.log(doctor);
     const appointment = await appointmentModel.find({ doctorId: doctor._id });
     res.status(200).send({
       success: true,
@@ -81,10 +82,6 @@ const doctorPrescriptionController = async (req, res) => {
   try {
     console.log(req.body);
     const prescription = await prescriptionModel.find({});
-    // const user = await userModel.findOne({ _id: req.body.userId });
-    // const doctor = await doctorModel.findOne({
-    //   userId: req.body.userId,
-    // });
     res.status(200).send({
       success: true,
       message: "Fetching prescription from doctor side success",
@@ -104,10 +101,8 @@ const givePrescriptionController = async (req, res) => {
   try {
     req.body.status = "given";
     const prescription = new prescriptionModel(req.body);
-    // console.log(prescription);
     await prescription.save();
     const user = await userModel.findOne({ _id: req.body.userId });
-    // console.log(user);
     user.notification.push({
       type: "prescription-given",
       message: `You have been prescribed by the doctor ${req.body.fname} ${req.body.lname}`,

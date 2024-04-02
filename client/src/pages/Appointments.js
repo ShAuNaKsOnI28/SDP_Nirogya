@@ -3,7 +3,7 @@ import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-// import "../styles/Navbar.css";
+
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
   const getAppointments = async () => {
@@ -27,34 +27,6 @@ const Appointments = () => {
 
   const pageSize = 5;
   const [currentPage, setCurrentPage] = useState(1);
-
-  // const columns = [
-  //   {
-  //     title: "Name",
-  //     render: (text, record) => (
-  //       <span className="">
-  //         {record.FirstName} {record.LastName}
-  //       </span>
-  //     ),
-  //   },
-  //   {
-  //     title: "Phone",
-  //     render: (text, record) => <span>{record.Phone}</span>,
-  //   },
-  //   {
-  //     title: "Date & Time",
-  //     render: (text, record) => (
-  //       <span>
-  //         {moment(record.date).format("DD-MM-YYYY")} &nbsp;
-  //         {moment(record.time).format("HH:mm")}
-  //       </span>
-  //     ),
-  //   },
-  //   {
-  //     title: "Status",
-  //     dataIndex: "status",
-  //   },
-  // ];
 
   const columns = [
     {
@@ -98,14 +70,14 @@ const Appointments = () => {
         className="md:bg-red-800 dark:bg-black p-2"
         pagination={{ pageSize: 5 }}
       /> */}
-      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
+      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white dark:text-black ">
         <table className=" min-w-full border border-gray-300">
           <thead>
             <tr>
               {columns.map((column, columnIndex) => (
                 <th
                   key={columnIndex}
-                  className="px-6 py-3 text-left text-sm font-semibold md:text-black dark:text-black uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-sm font-semibold dark:text-black uppercase tracking-wider"
                 >
                   {column.title}
                 </th>
@@ -135,7 +107,7 @@ const Appointments = () => {
         >
           Previous Page
         </Button>
-        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+        <span className="dark:bg-white dark:text-black rounded-md p-1">
           {" "}
           Page {currentPage}{" "}
         </span>

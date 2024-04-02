@@ -69,104 +69,7 @@ const GivePrescription = () => {
   }, []);
   return (
     <Layout>
-      {/* <Form onFinish={handleSubmit}>
-        <Form.Item
-          name="fname"
-          rules={[{ required: true, message: "first name required" }]}
-        >
-          <Input placeholder="First name" type="text" />
-        </Form.Item>
-        <Form.Item
-          name="lname"
-          rules={[{ required: true, message: "last name required" }]}
-        >
-          <Input placeholder="Last name" type="text" />
-        </Form.Item>
-        <Form.Item
-          name="Mname"
-          rules={[{ required: true, message: "Medicine name required" }]}
-        >
-          <Input placeholder="Medicine name" type="text" />
-        </Form.Item>
-        <Form.Item
-          name="morning"
-          label="Morning Prescription"
-          // rules={[{ required: true, message: "full name required" }]}
-        >
-          {/* <Checkbox>Morning Prescription</Checkbox> 
-          <Radio.Group>
-            <Radio value={true}>yes</Radio>
-            <Radio value={false}>No</Radio>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item
-          name="afternoon"
-          // label="Afternoon Prescription"
-          valuePropName="checked"
-          // rules={[{ required: true, message: "full name required" }]}
-        >
-          <Checkbox>Afternoon Prescription</Checkbox>
-          {/* <Radio.Group>
-            <Radio value={true}>yes</Radio>
-            <Radio value={false}>No</Radio>
-          </Radio.Group> 
-        </Form.Item>
-        <Form.Item
-          name="evening"
-          label="Evening Prescription"
-          // rules={[{ required: true, message: "full name required" }]}
-        >
-          {/* <Checkbox>Evening Prescription</Checkbox> 
-          <Radio.Group>
-            <Radio value={true}>yes</Radio>
-            <Radio value={false}>No</Radio>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item
-          name="night"
-          label="Night Prescription"
-          // rules={[{ required: true, message: "night  required" }]}
-        >
-          {/* <Checkbox>Night Prescription</Checkbox> 
-          <Radio.Group>
-            <Radio value={true}>yes</Radio>
-            <Radio value={false}>No</Radio>
-          </Radio.Group>
-        </Form.Item>
-        <DatePicker
-          className="m-2"
-          format="DD-MM-YYYY"
-          onChange={(value) => {
-            setDate(value.format("DD-MM-YYYY"));
-          }}
-        />
-        <Form.Item
-          name="quantity"
-          rules={[{ required: true, message: "quantity of medicine required" }]}
-        >
-          <Input placeholder="Quantity of medicine" type="number" />
-        </Form.Item>
-        <Form.Item
-          name="noofdays"
-          rules={[{ required: true, message: "number of days required" }]}
-        >
-          <Input placeholder="Number of Days" type="number" />
-        </Form.Item>
-        <Form.Item
-          name="problem"
-          rules={[{ required: true, message: "problem is required" }]}
-        >
-          <Input placeholder="Problem of patient" type="text" />
-        </Form.Item>
-        <Form.Item
-          name="diagnosis"
-          rules={[{ required: true, message: "diagnosis is required" }]}
-        >
-          <Input placeholder="Diagnosis of patient" type="text" />
-        </Form.Item>
-        <button type="submit">Send Prescription</button>
-      </Form> */}
-      <span className=" ml-48 text-3xl font-semibold dark:text-white">
+      <span className=" ml-48 text-3xl font-semibold md:text-black dark:text-white">
         Prescription Details
       </span>
       <Form
@@ -176,7 +79,8 @@ const GivePrescription = () => {
         <Form.Item
           name="fname"
           rules={[{ required: true, message: "First name required" }]}
-          className="mb-4"
+          className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black"
+          label="Doctor First Name"
         >
           <Input
             placeholder="First name"
@@ -188,7 +92,8 @@ const GivePrescription = () => {
         <Form.Item
           name="lname"
           rules={[{ required: true, message: "Last name required" }]}
-          className="mb-4"
+          className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black"
+          label="Doctor Last Name"
         >
           <Input
             placeholder="Last name"
@@ -200,7 +105,8 @@ const GivePrescription = () => {
         <Form.Item
           name="Mname"
           rules={[{ required: true, message: "Medicine name required" }]}
-          className="mb-4"
+          className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black"
+          label="Medicine Name"
         >
           <Input
             placeholder="Medicine name"
@@ -222,7 +128,6 @@ const GivePrescription = () => {
           className="mb-4"
           valuePropName="checked"
         >
-          {/* <Checkbox/> */}
           <Radio.Group className="flex">
             <Radio value={true}>Yes</Radio>
             <Radio value={false}>No</Radio>
@@ -243,18 +148,22 @@ const GivePrescription = () => {
           </Radio.Group>
         </Form.Item>
 
-        <DatePicker
-          className="mb-4 p-2 border rounded"
-          format="DD-MM-YYYY"
-          onChange={(value) => {
-            setDate(value.format("DD-MM-YYYY"));
-          }}
-        />
+        <span className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black">
+          Select Date :{" "}
+          <DatePicker
+            className="mb-4 p-2 border rounded"
+            format="DD-MM-YYYY"
+            onChange={(value) => {
+              setDate(value.format("DD-MM-YYYY"));
+            }}
+          />
+        </span>
 
         <Form.Item
           name="quantity"
           rules={[{ required: true, message: "Quantity of medicine required" }]}
-          className="mb-4"
+          className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black"
+          label="Quantity of Medicine"
         >
           <Input
             placeholder="Quantity of medicine"
@@ -266,7 +175,8 @@ const GivePrescription = () => {
         <Form.Item
           name="noofdays"
           rules={[{ required: true, message: "Number of days required" }]}
-          className="mb-4"
+          className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black"
+          label="Number of Days"
         >
           <Input
             placeholder="Number of Days"
@@ -278,7 +188,8 @@ const GivePrescription = () => {
         <Form.Item
           name="problem"
           rules={[{ required: true, message: "Problem is required" }]}
-          className="mb-4"
+          className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black"
+          label="Problem of patient"
         >
           <Input
             placeholder="Problem of patient"
@@ -290,7 +201,8 @@ const GivePrescription = () => {
         <Form.Item
           name="diagnosis"
           rules={[{ required: true, message: "Diagnosis is required" }]}
-          className="mb-4"
+          className="mb-4 md:text-black md:bg-white dark:text-white dark:bg-black"
+          label="Diagnosis of patient"
         >
           <Input
             placeholder="Diagnosis of patient"

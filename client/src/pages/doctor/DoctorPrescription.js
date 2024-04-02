@@ -44,19 +44,23 @@ const DoctorPrescription = () => {
     },
     {
       title: "Morning Doseage",
-      dataIndex: "morning",
+      // dataIndex: "morning",
+      render: (record) => (record.morning ? "Yes" : "No"),
     },
     {
       title: "Afternoon Doseage",
-      dataIndex: "afternoon",
+      // dataIndex: "afternoon",
+      render: (record) => (record.afternoon ? "Yes" : "No"),
     },
     {
       title: "Evening Doseage",
-      dataIndex: "evening",
+      // dataIndex: "evening",
+      render: (record) => (record.evening ? "Yes" : "No"),
     },
     {
       title: "Night Doseage",
-      dataIndex: "night",
+      // dataIndex: "night",
+      render: (record) => (record.night ? "Yes" : "No"),
     },
     {
       title: "Date of appointment",
@@ -89,14 +93,14 @@ const DoctorPrescription = () => {
   const currentPrescription = prescription.slice(startIndex, endIndex);
   return (
     <Layout>
-      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
+      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white dark:text-black">
         <table className=" min-w-full border border-gray-300">
           <thead>
             <tr>
               {columns.map((column, columnIndex) => (
                 <th
                   key={columnIndex}
-                  className="px-6 py-3 text-left text-sm font-semibold md:text-black dark:text-black uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-sm font-semibold dark:text-black uppercase tracking-wider"
                 >
                   {column.title}
                 </th>
@@ -126,7 +130,7 @@ const DoctorPrescription = () => {
         >
           Previous Page
         </Button>
-        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+        <span className="dark:bg-white dark:text-black rounded-md p-1">
           {" "}
           Page {currentPage}{" "}
         </span>

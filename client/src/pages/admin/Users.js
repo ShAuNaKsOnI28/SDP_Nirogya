@@ -49,8 +49,8 @@ const Users = () => {
   const columns = [
     {
       title: <span className=" text-center px-3 text-lg">Name</span>,
-      dataIndex: "name",
-      render: (text) => <span className="px-3">{text}</span>,
+      dataIndex: "fname",
+      render: (text,record) => (record.salutation+" "+record.fname+" "+record.lname),
     },
     {
       title: <span className=" text-center px-3 text-lg">Email</span>,

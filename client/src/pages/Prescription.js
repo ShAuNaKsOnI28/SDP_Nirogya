@@ -30,11 +30,6 @@ const Prescription = () => {
     {
       title: "Doctor Name",
       dataIndex: "fname",
-      // render: (record) => (
-      //   <span>
-      //     {record.FirstName} {record.LastName}
-      //   </span>
-      // ),
     },
     {
       title: "Date",
@@ -46,19 +41,23 @@ const Prescription = () => {
     },
     {
       title: "Morning Doseage",
-      dataIndex: "morning",
+      // dataIndex: "morning",
+      render: (record) => (record.morning ? "Yes" : "No"),
     },
     {
       title: "Afternoon Doseage",
-      dataIndex: "afternoon",
+      // dataIndex: "afternoon",
+      render: (record) => (record.afternoon ? "Yes" : "No"),
     },
     {
       title: "Evening Doseage",
-      dataIndex: "evening",
+      // dataIndex: "evening",
+      render: (record) => (record.evening ? "Yes" : "No"),
     },
     {
       title: "Night Doseage",
-      dataIndex: "night",
+      // dataIndex: "night",
+      render: (record) => (record.night ? "Yes" : "No"),
     },
     {
       title: "Date of appointment",
@@ -92,55 +91,14 @@ const Prescription = () => {
 
   return (
     <Layout>
-      {/* <div>
-        <table border="1">
-          <thead>
-            <tr>
-              {columns.map((column) => (
-                <th className=" px-5 py-3 w-screen" key={column.title}>
-                  {column.title}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {currentPrescription.map((record, index) => (
-              <tr key={index}>
-                {columns.map((column, columnIndex) => (
-                  <td key={columnIndex}>
-                    {column.render
-                      ? column.render(record)
-                      : record[column.dataIndex]}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="px-10 pt-10 ">
-          <Button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Previous Page
-          </Button>
-          <span> Page {currentPage} </span>
-          <Button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={endIndex >= prescription.length}
-          >
-            Next Page
-          </Button>
-        </div>
-      </div> */}
-      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white md:bg-black dark:text-black md:text-white">
+      <div className=" rounded-md overflow-x-auto ml-8 max-w-screen-md dark:bg-white dark:text-black">
         <table className=" min-w-full border border-gray-300">
           <thead>
             <tr>
               {columns.map((column, columnIndex) => (
                 <th
                   key={columnIndex}
-                  className="px-6 py-3 text-left text-sm font-semibold md:text-black dark:text-black uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-sm font-semibold dark:text-black uppercase tracking-wider"
                 >
                   {column.title}
                 </th>
@@ -170,7 +128,7 @@ const Prescription = () => {
         >
           Previous Page
         </Button>
-        <span className="dark:bg-white md:bg-black dark:text-black md:text-white rounded-md p-1">
+        <span className="dark:bg-white dark:text-black rounded-md p-1">
           {" "}
           Page {currentPage}{" "}
         </span>

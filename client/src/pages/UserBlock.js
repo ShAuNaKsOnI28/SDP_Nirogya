@@ -1,21 +1,17 @@
-import { Button } from "antd";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-// import Layout from "../components/Layout";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserBlock = () => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
   };
-  //   const res = axios.post(
-  //     "/api/v1/user/blockUser",
-  //     { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
-  //   );
   useEffect(() => {
     const blockUser = async () => {
       try {
@@ -30,22 +26,27 @@ const UserBlock = () => {
       }
     };
 
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+
     blockUser();
   }, []);
-  //   console.log(user.name);
+  console.log(user);
   return (
     <div className="text-2xl text-center font-bold pt-5">
       User Blocked
-      {/* <div className="text-lg font-medium p-2">
-        {/* Name = {user.name} Email = {user.email} 
+      {isVisible && (
+        <div className="text-lg font-medium p-2">
+          Name = {user.salutation + " " + user.fname + " " + user.lname} <br />
+          Email ={user.email}
+        </div>
+      )}
+      <div onClick={handleLogout}>
+        <Link to="/login">go back to login</Link>
       </div>
-      {/* <Button
-        // to="http://localhost:3000/login"
-        className="text-sm m-2 bg-blue-500 rounded-md p-2"
-        onClick={() => navigate("/login")}
-      >
-        Go To Home
-      </Button> */}
     </div>
   );
 };

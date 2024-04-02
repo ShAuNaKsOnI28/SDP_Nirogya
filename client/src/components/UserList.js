@@ -11,7 +11,7 @@ const UserList = ({ user }) => {
         onClick={() => navigate(`/user/give-prescription/${user._id}`)}
       >
         <div className="card-header md:bg-gray-100 dark:bg-gray-800 md:text-black dark:text-white">
-          {user.salutation} {user.name}
+          {user.salutation} {user.fname} {user.lname}
         </div>
         <div className="card-body md:bg-white dark:bg-black md:text-black dark:text-white">
           <p>

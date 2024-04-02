@@ -173,10 +173,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/* <header className="h-1/3 overflow-clip w-8/12"> */}
       <Navbar />
-      {/* </header> */}
-      {/* <div className="main"> */}
       <body className="flex min-h-screen ">
         <Sidebars />
         <div className="w-full pt-3 dark:bg-black md:bg-white">
@@ -198,7 +195,6 @@ const Layout = ({ children }) => {
           </body>
         </div>
       </body>
-      {/* </div> */}
       <footer className="min-h-full pt-2 overflow-clip">
         <Footer />
       </footer>

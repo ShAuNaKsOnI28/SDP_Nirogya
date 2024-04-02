@@ -4,12 +4,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
-// import "../styles/LoginStyles.css";
 
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [isDoctor, setIsDoctor] = useState(false);
 
   const onFinishHandler = async (values) => {
     try {
@@ -39,15 +37,12 @@ const Register = () => {
           <div className=" w-3/5 ">
             <img src="images/doctor1.png" />
           </div>
-          {/* <div className=" overflow transition-transform transform duration-300 scale-100 hover:scale-105"> */}
-          {/* <div className="w-2/5 mx-7 mr-12 items-cen"> */}
           <div className="z-50 bg-emerald-200 rounded-xl shadow-2xl shadow-slate-300 px-5 m-2 -my-10 w-96 ">
             <h1 className="text-center text-emerald-700 text-2xl font-bold uppercase flex justify-center flex-col items-center">
               Register
               <hr className="border-emerald-700 border-2 bg-emerald-700 rounded-lg mt-1 w-6" />
               <br />
             </h1>
-            {/* <div className=""> */}
             <Form onFinish={onFinishHandler}>
               <Form.Item
                 name="salutation"
@@ -179,10 +174,7 @@ const Register = () => {
                 Register
               </button>
             </Form>
-            {/* </div> */}
           </div>
-          {/* </div> */}
-          {/* </div> */}
         </div>
       </div>
     </>
